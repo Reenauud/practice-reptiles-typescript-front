@@ -1,7 +1,7 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Home from "./Pages/Home";
+import Home from "../src/Pages/Home";
 import Food from "./Pages/Food";
 import News from "./Pages/News";
 import Connexion from "./Pages/Connexion";
