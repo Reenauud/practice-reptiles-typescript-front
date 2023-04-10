@@ -21,7 +21,12 @@ export default function Home({ navigation }) {
           <StatusBar style="auto" />
           <Menu navigation={navigation} />
           <View style={styles.icon}>
-            <Icon name="account-circle" color={"green"} size={40} />
+            <Icon
+              name="account-circle"
+              color={"green"}
+              size={40}
+              onPress={() => navigation.navigate("Connexion")}
+            />
             <Icon name="shop" color={"green"} size={40} />
           </View>
         </View>

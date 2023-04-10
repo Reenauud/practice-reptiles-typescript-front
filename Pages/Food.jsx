@@ -10,7 +10,7 @@ export default function Food() {
         <SearchBar
           placeholder="que recherchez vous ?"
           onPress={() => alert("onPress")}
-          onChangeText={(text) => console.log(text)}
+          onChange={(text) => console.log(text)}
         />
       </View>
     </View>
