@@ -2,7 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { Icon } from "@rneui/themed";
 import { StyleSheet, Text, View, ImageBackground } from "react-native";
 import SearchBar from "react-native-dynamic-search-bar";
-import LezardImage from "../assets/lezard.jpg";
+import LezardImage from "../../assets/lezard.jpg";
 import Carrousel from "../Components/Carrousel";
 import Menu from "../Components/Menu";
 
