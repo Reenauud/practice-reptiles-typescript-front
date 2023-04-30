@@ -8,14 +8,27 @@ import {
 import React from "react";
 import { Button } from "@rneui/themed";
 import { useState } from "react";
+import { useQuery, gql } from "@apollo/client";
 
-islogin = (email, pass) => {
-  alert(email + pass);
-};
+const AUTH = gql`
+  query CreateUser($roles: roles, $password: password, $email: email) {
+    createUser(
+      roles: "admin"
+      password: "pass"
+      email: "laputaindsamere@hotmail.fr"
+    ) {
+      email
+    }
+  }
+`;
 
 export default function Connexion() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  // const islogin = (email, pass) => {
+  //   alert(email + pass);
+  // };
+  const data = useQuery(AUTH);
 
   return (
     <View style={styles.container}>
@@ -44,7 +57,7 @@ export default function Connexion() {
         </View>
         <View style={styles.placementBtnCo}>
           <TouchableOpacity
-            onPress={() => login(email, password)}
+            onPress={() => console.log(data)}
             style={styles.BtnCo}
           >
             <Text>Connexion</Text>
