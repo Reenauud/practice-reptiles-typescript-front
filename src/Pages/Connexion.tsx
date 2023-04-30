@@ -12,11 +12,7 @@ import { useQuery, gql } from "@apollo/client";
 
 const AUTH = gql`
   query CreateUser($roles: roles, $password: password, $email: email) {
-    createUser(
-      roles: "admin"
-      password: "pass"
-      email: "laputaindsamere@hotmail.fr"
-    ) {
+    createUser(roles: "admin", password: "pass", email: "") {
       email
     }
   }
