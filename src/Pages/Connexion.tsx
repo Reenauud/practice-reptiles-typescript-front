@@ -8,23 +8,33 @@ import {
 import React from "react";
 import { Button } from "@rneui/themed";
 import { useState } from "react";
-import { useQuery, gql } from "@apollo/client";
-
-const AUTH = gql`
-  query CreateUser($roles: roles, $password: password, $email: email) {
-    createUser(roles: "admin", password: "pass", email: "") {
-      email
-    }
-  }
-`;
+import { gql, useQuery } from "@apollo/client";
+import { create } from "react-test-renderer";
 
 export default function Connexion() {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("dsdfdsgrefd@hsqfsgefs.fr");
+  const [password, setPassword] = useState("gfdsfvfxgdvc");
   // const islogin = (email, pass) => {
   //   alert(email + pass);
   // };
-  const data = useQuery(AUTH);
+  const getUser = gql`
+    query GetUserById($getUserByIdId: Float!) {
+      getUserById(id: 1) {
+        email
+      }
+    }
+  `;
+
+  const { loading, error, data } = useQuery(getUser);
+
+  if (loading) {
+    alert("loading");
+  }
+  if (error) {
+    alert(`error : ${error.message}`);
+  }
+
+  console.log("data dans file ", data?.getAllUsers.email[0]);
 
   return (
     <View style={styles.container}>
@@ -53,7 +63,9 @@ export default function Connexion() {
         </View>
         <View style={styles.placementBtnCo}>
           <TouchableOpacity
-            onPress={() => console.log(data)}
+            onPress={() => {
+              console.log(data);
+            }}
             style={styles.BtnCo}
           >
             <Text>Connexion</Text>
