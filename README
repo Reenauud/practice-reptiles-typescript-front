@@ -1,0 +1,7 @@
+// 1) npm i
+
+// 2) npm run start
+
+// si erreur Unable to resolve "../../App" from "node_modules/expo/AppEntry.js" ,
+// modifier l'import comme ceci :
+// import App from '../../src/App' dans node_modules/expo/AppEntry.js;
