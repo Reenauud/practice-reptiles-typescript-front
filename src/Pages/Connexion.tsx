@@ -5,36 +5,32 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
+import { GET_ALL_USERS } from "../GraphQL/Queries";
 import { Button } from "@rneui/themed";
-import { useState } from "react";
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { create } from "react-test-renderer";
 
 export default function Connexion() {
   const [email, setEmail] = useState("dsdfdsgrefd@hsqfsgefs.fr");
   const [password, setPassword] = useState("gfdsfvfxgdvc");
+  const [users, setUsers] = useState([]);
   // const islogin = (email, pass) => {
   //   alert(email + pass);
   // };
-  const getUser = gql`
-    query GetUserById($getUserByIdId: Float!) {
-      getUserById(id: 1) {
-        email
-      }
+
+  const { loading, error } = useQuery(GET_ALL_USERS, {
+    onCompleted: (data) => {
+      setUsers(data.getAllUsers);
     }
-  `;
-
-  const { loading, error, data } = useQuery(getUser);
-
+  });
+console.log(users);
   if (loading) {
     alert("loading");
   }
   if (error) {
     alert(`error : ${error.message}`);
   }
-
-  console.log("data dans file ", data?.getAllUsers.email[0]);
 
   return (
     <View style={styles.container}>
@@ -64,7 +60,7 @@ export default function Connexion() {
         <View style={styles.placementBtnCo}>
           <TouchableOpacity
             onPress={() => {
-              console.log(data);
+              console.log(users)
             }}
             style={styles.BtnCo}
           >

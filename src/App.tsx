@@ -1,7 +1,8 @@
 import React from "react";
+import { AppRegistry } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Home from "../src/Pages/Home";
+import Home from "./Pages/Home";
 import Food from "./Pages/Food";
 import News from "./Pages/News";
 import Connexion from "./Pages/Connexion";
@@ -9,6 +10,8 @@ import client from "./client";
 import { ApolloProvider } from "@apollo/client";
 
 const Stack = createNativeStackNavigator();
+
+const appName = "reptile-shop-mobile";
 
 export default function App() {
   return (
@@ -24,3 +27,5 @@ export default function App() {
     </ApolloProvider>
   );
 }
+
+AppRegistry.registerComponent(appName, () => App);

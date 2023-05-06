@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-export default function Menu({ navigation }) {
+export default function Menu({ navigation }: any) {
   return (
     <View style={styles.menu}>
       <Text style={styles.text} onPress={() => navigation.navigate("Food")}>
