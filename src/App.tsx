@@ -17,7 +17,11 @@ export default function App() {
   return (
     <ApolloProvider client={client}>
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator
+         screenOptions={{
+          headerShown: false
+        }}
+        >
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Food" component={Food} />
           <Stack.Screen name="News" component={News} />

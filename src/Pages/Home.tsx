@@ -1,107 +1,158 @@
 import { StatusBar } from "expo-status-bar";
-import { Icon } from "@rneui/themed";
-import { StyleSheet, Text, View, ImageBackground } from "react-native";
+import { Icon, LinearProgress } from "@rneui/themed";
+import { StyleSheet, Text, View, ImageBackground, Image } from "react-native";
 import SearchBar from "react-native-dynamic-search-bar";
-import LezardImage from "../../assets/lezard.jpg";
 import Carrousel from "../Components/Carrousel";
 import Menu from "../Components/Menu";
+import LinearGradient from 'react-native-linear-gradient';
+import logo from "../../assets/logo.png"
+import { borderRadius, flexbox, height, positions, style, width } from "@mui/system";
+import { Flex } from "@react-native-material/core";
+import userIcon from "../../assets/user.png"
+import panier from "../../assets/panier.png"
+import iguan from "../../assets/iguan.jpg"
+import terra from "../../assets/terra.jpg"
 
 export default function Home({ navigation }) {
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        source={LezardImage}
-        resizeMode="cover"
-        style={styles.image}
-      >
-        <View style={styles.header}>
-          <View>
-            <Text style={styles.title}> reptile shop</Text>
-          </View>
-          <StatusBar style="auto" />
-          <Menu navigation={navigation} />
-          <View style={styles.icon}>
-            <Icon
-              name="account-circle"
-              color={"green"}
-              size={40}
-              onPress={() => navigation.navigate("Connexion")}
-            />
-            <Icon name="shop" color={"green"} size={40} />
-          </View>
-        </View>
-      </ImageBackground>
+    <View style={styles.background}>
 
-      <View>
-        <SearchBar
-          placeholder="Search here"
-          onPress={() => alert("onPress")}
-          onChangeText={(text) => console.log(text)}
+      <View style={styles.header}>
+{/* 
+      <Image
+        style={styles.tinyLogo}
+        source={{
+          uri: 'assets/logo.png',
+        }}
+      /> */}
+  <ImageBackground source={logo} resizeMode={"cover"} style={styles.image}></ImageBackground>
+  <ImageBackground source={userIcon} resizeMode={"contain"} style={styles.userIcon}></ImageBackground>
+  <ImageBackground source={panier} resizeMode={"contain"} style={styles.panier}></ImageBackground>
+
+
+      </View>
+
+      <View style={styles.carousel}>
+
+      </View>
+      <View style={styles.menu}>
+
+        <View style={styles.containerReptile}>
+
+      {/* <ImageBackground source={iguan} resizeMode={"cover"} style={styles.reptileCategory}></ImageBackground> */}
+      <Image
+      resizeMode="cover"
+          style={styles.reptileCategory}
+          source={iguan}
         />
+        <Text style={styles.text}>REPTILES</Text>
+        
+
+<Image
+      resizeMode="cover"
+          style={styles.reptileCategory}
+          source={terra}
+        />
+
+      {/* <ImageBackground source={iguan} resizeMode={"cover"} style={{borderRadius:10}}></ImageBackground>
+      <Text> reptiles</Text> */}
+      <Text style={styles.text}>MATERIEL</Text>
+
       </View>
-      <Carrousel />
-      {/* 
-      <View style={styles.footer}>
-        <Text>lorem</Text>
-      </View> */}
-      <View style={styles.footer}>
-        <Text>lorem</Text>
+
+
+
       </View>
+   
+
+
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  background: {
     flex: 1,
     backgroundColor: "grey",
     justifyContent: "space-between",
-  },
-  header: {
-    flex: 0,
-    width: "100%",
-    alignItems: "flex-end",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    height: 200,
-  },
-  slide: {
-    flex: 0,
-    height: "40%",
-    backgroundColor: "blue",
-  },
-  footer: {
-    flex: 0,
-    backgroundColor: "transparent",
-    height: "15%",
-  },
-  image: {
-    flex: 0,
-    height: 200,
-    // alignItems: "center",
-    // flexDirection: "column-reverse",
-    // alignItems: "center",
+
   },
 
-  icon: {
-    flex: 0,
-    display: "flex",
-    flexDirection: "row-reverse",
-    marginLeft: 10,
-    width: 100,
-    justifyContent: "space-between",
-  },
-  title: {
-    color: "white",
+    image: {
+      flex: 0,
+      width: "80%",
+      height: "100%",
+      marginRight: "2%"
+    },
 
-    position: "absolute",
-    bottom: "30%",
-    left: 100,
-    fontSize: 40,
-  },
-  carou: {
-    flex: 0,
-    backgroundColor: "pink",
-    height: 90,
-  },
-});
+    header:{
+      backgroundColor: "black",
+      height: "17%",
+      flex:0,
+      alignItems: "flex-end",
+    },
+
+    userIcon: {
+      flex:1,
+      width: 100,
+      height: 40,
+      position:"absolute",
+      top:70,
+      left:0
+    },
+
+    panier:{
+
+      flex:1,
+      width: 100,
+      height: 40,
+      position:"absolute",
+      top:70,
+      left:320
+
+    },
+    menu:{
+      flex:3,
+      height:10,
+      alignItems:"center",
+      marginBottom:50,
+      marginTop:50
+
+
+    },
+
+    carousel:{
+      backgroundColor:"lightgreen",
+      flex:1,
+    },
+    reptileCategory:{
+      flex:1,
+      borderRadius:50,
+      width:"100%",
+ 
+
+      
+      
+      
+
+    },
+
+
+
+    containerReptile:{
+      width:180,
+      flex:1,
+      alignItems:"center"
+
+
+    },
+    text:{
+      marginTop:10,
+      marginBottom:40,
+      fontSize:17
+
+    }
+
+  });
+
+
