@@ -2,7 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { Icon, LinearProgress } from "@rneui/themed";
 import { StyleSheet, Text, View, ImageBackground, Image } from "react-native";
 import SearchBar from "react-native-dynamic-search-bar";
-import Carrousel from "../Components/Carrousel";
+import Carrousel from "../Components/Carousel";
 import Menu from "../Components/Menu";
 import LinearGradient from 'react-native-linear-gradient';
 import logo from "../../assets/logo.png"
@@ -12,6 +12,10 @@ import userIcon from "../../assets/user.png"
 import panier from "../../assets/panier.png"
 import iguan from "../../assets/iguan.jpg"
 import terra from "../../assets/terra.jpg"
+import CarouselCardItem from "../Components/Carousel"
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { useNavigationContainerRef } from "@react-navigation/native";
+
 
 export default function Home({ navigation }) {
   return (
@@ -26,13 +30,15 @@ export default function Home({ navigation }) {
         }}
       /> */}
   <ImageBackground source={logo} resizeMode={"cover"} style={styles.image}></ImageBackground>
-  <ImageBackground source={userIcon} resizeMode={"contain"} style={styles.userIcon}></ImageBackground>
+  <ImageBackground source={userIcon} resizeMode={"contain"} style={styles.userIcon} ></ImageBackground>
   <ImageBackground source={panier} resizeMode={"contain"} style={styles.panier}></ImageBackground>
 
 
       </View>
 
       <View style={styles.carousel}>
+        {/* <Carrousel/> */}
+        <CarouselCardItem />
 
       </View>
       <View style={styles.menu}>
@@ -73,7 +79,7 @@ export default function Home({ navigation }) {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    backgroundColor: "grey",
+    backgroundColor: "lightgreen",
     justifyContent: "space-between",
 
   },
@@ -122,9 +128,18 @@ const styles = StyleSheet.create({
     },
 
     carousel:{
-      backgroundColor:"lightgreen",
+      backgroundColor:"green",
       flex:1,
+      borderRadius: 30,
+      marginTop:"10%",
+      marginLeft:"5%",
+      marginRight:"5%",
+
+
+
+ 
     },
+
     reptileCategory:{
       flex:1,
       borderRadius:50,
