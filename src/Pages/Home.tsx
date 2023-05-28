@@ -1,12 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import { Icon } from "@rneui/themed";
-import { StyleSheet, Text, View, ImageBackground } from "react-native";
+import { Text, View, ImageBackground } from "react-native";
+import { styles } from "../styles";
 import SearchBar from "react-native-dynamic-search-bar";
 import LezardImage from "../../assets/lezard.jpg";
 import Carrousel from "../Components/Carrousel";
 import Menu from "../Components/Menu";
 
-export default function Home({ navigation }) {
+export default function Home({ navigation }: any) {
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -51,57 +52,4 @@ export default function Home({ navigation }) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "grey",
-    justifyContent: "space-between",
-  },
-  header: {
-    flex: 0,
-    width: "100%",
-    alignItems: "flex-end",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    height: 200,
-  },
-  slide: {
-    flex: 0,
-    height: "40%",
-    backgroundColor: "blue",
-  },
-  footer: {
-    flex: 0,
-    backgroundColor: "transparent",
-    height: "15%",
-  },
-  image: {
-    flex: 0,
-    height: 200,
-    // alignItems: "center",
-    // flexDirection: "column-reverse",
-    // alignItems: "center",
-  },
 
-  icon: {
-    flex: 0,
-    display: "flex",
-    flexDirection: "row-reverse",
-    marginLeft: 10,
-    width: 100,
-    justifyContent: "space-between",
-  },
-  title: {
-    color: "white",
-
-    position: "absolute",
-    bottom: "30%",
-    left: 100,
-    fontSize: 40,
-  },
-  carou: {
-    flex: 0,
-    backgroundColor: "pink",
-    height: 90,
-  },
-});

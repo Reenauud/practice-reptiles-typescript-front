@@ -26,7 +26,7 @@
     "graphql": "^15.8.0",
     "ionicons": "^7.1.0",
     "react": "18.2.0",
-    "react-native": "0.71.7",
+    "react-native": "0.71.8",
     "react-native-animated-spinkit": "^1.5.2",
     "react-native-carousel-cards": "^1.2.3",
     "react-native-dynamic-search-bar": "github:WrathChaos/react-native-dynamic-search-bar#expo",
