@@ -16,3 +16,4 @@ export const GET_FOOD_LIST = gql`
         email
     }
  }`;
+

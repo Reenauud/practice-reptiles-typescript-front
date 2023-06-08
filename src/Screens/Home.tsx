@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
-import { Icon, LinearProgress } from "@rneui/themed";
-import { StyleSheet, Text, View, ImageBackground, Image } from "react-native";
+import { Button, Icon, LinearProgress } from "@rneui/themed";
+import { StyleSheet, Text, View, ImageBackground, Image, SafeAreaView } from "react-native";
 import SearchBar from "react-native-dynamic-search-bar";
 import Carrousel from "../Components/Carousel";
 import Menu from "../Components/Menu";
@@ -13,24 +13,41 @@ import panier from "../../assets/panier.png"
 import iguan from "../../assets/iguan.jpg"
 import terra from "../../assets/terra.jpg"
 import CarouselCardItem from "../Components/Carousel"
-import { TouchableOpacity } from "react-native-gesture-handler";
+import  {TouchableOpacity}  from "react-native-gesture-handler";
 import { useNavigationContainerRef } from "@react-navigation/native";
+import React, { useState } from "react";
 
 
-export default function Home({ navigation }) {
+
+
+export default function Home({ navigation  }:any) {
+
+  const onPress = ( )=> {
+    navigation.navigate("Connexion")
+  }
+
+
+
+
   return (
     <View style={styles.background}>
 
       <View style={styles.header}>
-{/* 
-      <Image
-        style={styles.tinyLogo}
-        source={{
-          uri: 'assets/logo.png',
-        }}
-      /> */}
+
+     
+          <TouchableOpacity onPress={onPress} style={styles.touchable}>
+            <Image source={userIcon} resizeMode={"contain"} style={styles.userIcon}></Image>
+          </TouchableOpacity><View />
+          
+        
+
+
+
+
   <ImageBackground source={logo} resizeMode={"cover"} style={styles.image}></ImageBackground>
-  <ImageBackground source={userIcon} resizeMode={"contain"} style={styles.userIcon} ></ImageBackground>
+
+
+
   <ImageBackground source={panier} resizeMode={"contain"} style={styles.panier}></ImageBackground>
 
 
@@ -88,14 +105,23 @@ const styles = StyleSheet.create({
       flex: 0,
       width: "80%",
       height: "100%",
-      marginRight: "2%"
+      marginRight: "2%",
+    },
+
+    test:{
+      flex:1,
+      height:10,
+      width:10
+
+
     },
 
     header:{
       backgroundColor: "black",
       height: "17%",
-      flex:0,
+      flex:1,
       alignItems: "flex-end",
+      flexDirection: "row"
     },
 
     userIcon: {
@@ -103,8 +129,8 @@ const styles = StyleSheet.create({
       width: 100,
       height: 40,
       position:"absolute",
-      top:70,
-      left:0
+      top:20,
+      left:0,
     },
 
     panier:{
@@ -128,12 +154,15 @@ const styles = StyleSheet.create({
     },
 
     carousel:{
-      backgroundColor:"green",
+      backgroundColor: "blue",
       flex:1,
       borderRadius: 30,
       marginTop:"10%",
       marginLeft:"5%",
       marginRight:"5%",
+      opacity:0.2,
+      zIndex:0
+
 
 
 
@@ -148,19 +177,25 @@ const styles = StyleSheet.create({
 
       
       
-      
 
     },
 
+    touchable:{
+      width: 80,
+      height:100,
+      justifyContent: "center",
+      alignContent: "center",
+      alignItems: "center",
+      zIndex: 1
 
+    },
 
     containerReptile:{
       width:180,
       flex:1,
       alignItems:"center"
-
-
     },
+
     text:{
       marginTop:10,
       marginBottom:40,
@@ -170,4 +205,8 @@ const styles = StyleSheet.create({
 
   });
 
+
+function rgba(arg0: number, arg1: number, arg2: number, arg3: number): any | import("react-native").ColorValue | undefined {
+  throw new Error("Function not implemented.");
+}
 

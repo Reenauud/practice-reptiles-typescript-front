@@ -7,36 +7,60 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { GET_ALL_USERS } from "../GraphQL/Queries";
+import {GET_TOKEN} from "../GraphQL/Mutation"
 import { Button } from "@rneui/themed";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { create } from "react-test-renderer";
+import * as SecureStore from 'expo-secure-store';
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../app/RootReducers";
+import { setMessage } from "../app/MessageSlice";
+import { useNavigationContainerRef } from "@react-navigation/native";
 
-export default function Connexion() {
-  const [email, setEmail] = useState("dsdfdsgrefd@hsqfsgefs.fr");
-  const [password, setPassword] = useState("gfdsfvfxgdvc");
+import Home from '../Screens/Home'
+
+
+export default function Connexion({navigation}:any) {
+  const [email, setEmail] = useState<string>();
+  const [password, setPassword] = useState<string>();
   const [users, setUsers] = useState([]);
+  const dispatch = useDispatch()
+  const {message} = useSelector((state: RootState) => state.message)
   // const islogin = (email, pass) => {
   //   alert(email + pass);
   // };
 
-  const { loading, error } = useQuery(GET_ALL_USERS, {
-    onCompleted: (data) => {
-      setUsers(data.getAllUsers);
-    }
+  const [getConnexion, { data, loading, error }] = useMutation(GET_TOKEN , {
+
+    onCompleted(data) {
+      save("token", data.getToken)
+      console.log("LOG", data.getToken)
+      dispatch(setMessage(data.getToken))
+      if(data.getToken){
+        alert(message)
+        navigation.navigate('Home')
+
+
+      }else{
+        alert("essaye encore")
+      }
+
+    },
+
   });
-console.log(users);
-  if (loading) {
-    alert("loading");
-  }
-  if (error) {
-    alert(`error : ${error.message}`);
+
+ 
+
+
+  async function save(key : string, value : string) {
+    await SecureStore.setItemAsync(key, value);
   }
 
   return (
     <View style={styles.container}>
       <View style={styles.connectWindow}>
         <View style={styles.titleposition}>
-          <Text style={styles.title}>Bienvenue</Text>
+          {/* <Text style={styles.title}>Bienvenue</Text> */}
         </View>
         <View style={styles.viewInput}>
           <TextInput
@@ -44,14 +68,15 @@ console.log(users);
             placeholder="Email"
             placeholderTextColor="#9a73ef"
             autoCapitalize="none"
-            onChangeText={() => email}
+            onChangeText={(text)=> setEmail(text) }
+           
           />
           <TextInput
             style={styles.input}
             placeholder="Mot de passe"
             placeholderTextColor="#9a73ef"
             autoCapitalize="none"
-            onChangeText={() => password}
+            onChangeText={(text) => setPassword(text)}
           />
         </View>
         <View style={styles.txt}>
@@ -60,7 +85,7 @@ console.log(users);
         <View style={styles.placementBtnCo}>
           <TouchableOpacity
             onPress={() => {
-              console.log(users)
+              getConnexion({variables: {email, password}})
             }}
             style={styles.BtnCo}
           >
