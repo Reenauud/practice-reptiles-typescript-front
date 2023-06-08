@@ -22,20 +22,34 @@ let description = "aaaaaaaaa"
 
 export const FormulaireReptile = () => {
 
-    const { loading, data } : any = useMutation(CREATE_REPTILE, { variables: {description: description} });
+    const [nom, setNom] = useState("")
+    const [description, setDescription] = useState("")
+    const [price, setPrice] = useState("")
+    const [quantity, setQuantity] = useState("")
+
+    const [createReptile, setCreateReptile] = useState({})
+
+    const { loading, data } : any = useMutation(CREATE_REPTILE, {
+
+
+        variables: { reptile: { description , nom, price, quantity} }
+
+    });
     if(loading) return console.log("loading")
     if(data) return console.log(data)
+
     return (
         <>
             <Formik
-                initialValues={{ description: '', family: "", name: '', price: "", quantity: "" }}
-                onSubmit={(values)=> alert(values.description)}
+                initialValues={{ description , family:'', name: '', price: "", quantity: "" }}
+                onSubmit={(values)=> {setCreateReptile(values), console.log(createReptile)
+                }}
             >
                 {({ handleChange, handleBlur, handleSubmit, values }) => (
                     <View style={{ flex: 0, width: "100%", alignItems: "center", }}>
 
                         <TextInput
-                            onChangeText={handleChange('description')}
+                        onChangeText={handleChange('description')}
                             onBlur={handleBlur('description')}
                             value={values.description}
                             placeholder='description'
@@ -71,7 +85,7 @@ export const FormulaireReptile = () => {
 
                         />
 
-                        <Button onPress={()=> handleSubmit( )} title="Submit" />
+                        <Button onPress={()=> handleSubmit()} title="Submit" />
                     </View>
                 )}
             </Formik>
