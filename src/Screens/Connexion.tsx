@@ -38,7 +38,7 @@ export default function Connexion({navigation}:any) {
       dispatch(setMessage(data.getToken))
       if(data.getToken){
         alert(message)
-        navigation.navigate('Home')
+        navigation.navigate('Admin')
 
 
       }else{
