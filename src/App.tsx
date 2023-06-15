@@ -3,7 +3,7 @@ import { AppRegistry } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "./Pages/Home";
-import Food from "./Pages/Food";
+import Food from "./Pages/FoodScreen/FoodScreen";
 import News from "./Pages/News";
 import Connexion from "./Pages/Connexion";
 import client from "./client";

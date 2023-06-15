@@ -41,12 +41,7 @@ export default function Home({ navigation }: any) {
         />
       </View>
       <Carrousel />
-      {/* 
       <View style={styles.footer}>
-        <Text>lorem</Text>
-      </View> */}
-      <View style={styles.footer}>
-        <Text>lorem</Text>
       </View>
     </View>
   );

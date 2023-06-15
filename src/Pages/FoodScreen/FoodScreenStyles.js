@@ -1,0 +1,57 @@
+import { StyleSheet } from "react-native";
+export const foodScreenStyles = StyleSheet.create({
+    foodTypesContainer: {
+        textAlign: "left",
+        justifyContent: "space-evenly",
+        fontSize: 12,
+      },
+      foodTypesTitle: {
+        fontWeight: "bold",
+      },
+      listContainer: {
+        justifyContent: "center",
+        alignItems: "center",
+        paddingHorizontal: 5,
+      },
+    segmentedButtonContainer: {
+        flexDirection: "row",
+        justifyContent: "center",
+        marginVertical: 10,
+        alignSelf: "center",
+        width: 320,
+      },
+      segmentedLeftButton: {
+        width: 100,
+        height: 40,
+        padding: 8,
+        backgroundColor: "#CFFFCE",
+        color: "#000000",
+        flexWrap: "wrap",
+        borderWidth: 1,
+        borderColor: "#168A35",
+        borderTopLeftRadius: 10,
+        borderBottomLeftRadius: 10,
+      },
+      segmentedCenterButton: {
+        width: 100,
+        height: 40,
+        padding: 8,
+        backgroundColor: "#CFFFCE",
+        color: "#000000",
+        flexWrap: "wrap",
+        borderWidth: 1,
+        borderColor: "#168A35",
+      },
+      segmentedRightButton: {
+        width: 100,
+        height: 40,
+        padding: 8,
+        backgroundColor: "#CFFFCE",
+        color: "#000000",
+        flexWrap: "wrap",
+        borderWidth: 1,
+        borderColor: "#168A35",
+        borderTopRightRadius: 10,
+        borderBottomRightRadius: 10,
+      },
+});

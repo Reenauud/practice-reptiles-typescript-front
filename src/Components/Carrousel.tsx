@@ -1,5 +1,5 @@
-import { height } from "@mui/system";
 import React from "react";
+import { height } from "@mui/system";
 import { View, Text } from "react-native";
 
 import { RNCarousel } from "react-native-carousel-cards";

@@ -16,3 +16,12 @@ export const GET_FOOD_LIST = gql`
         email
     }
  }`;
+
+ export const GET_FOOD_FILTERED = gql`
+ query GetFoodFiltered($filter: String!) {
+    getFoodFiltered(filter: $filter) {
+        foodName
+        foodPrice
+        foodCategory
+    }
+ }`;
