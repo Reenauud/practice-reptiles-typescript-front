@@ -11,6 +11,7 @@ import { ApolloProvider } from "@apollo/client";
 import { Provider } from "react-redux";
 import {store} from './app/Store'
 import Admin from "./Screens/Admin";
+import CardReptiles from "./Components/CardReptiles";
 
 const Stack = createNativeStackNavigator();
 
@@ -31,6 +32,7 @@ export default function App() {
           <Stack.Screen name="News" component={News} /> */}
          <Stack.Screen name="Connexion" component={Connexion} />
           <Stack.Screen name = "Admin" component={Admin}/>
+          <Stack.Screen name = "CardReptile" component={CardReptiles}/>
         </Stack.Navigator>
       </NavigationContainer>
     </ApolloProvider>

@@ -10,10 +10,13 @@ import { useState } from "react"
 // import Formik from 'formik';
 // import { Form, FormProvider, useForm } from "react-hook-form"
 // import { Input } from "@mui/material"
-import { FormulaireReptile } from "../Components/FormulaireReptile"
+import { FormulaireReptile } from "../Components/Formulaire/FormulaireReptile"
 import React from "react"
 // import { useMutation } from "@apollo/client"
 // import { CREATE_REPTILE } from "../GraphQL/Mutation"
+import CardReptiles from "../Components/CardReptiles"
+import { FormulaireCategory } from "../Components/Formulaire/FormulaireCategory"
+import { FormulaireFood } from "../Components/Formulaire/FormulaireFood"
 
 
 
@@ -22,10 +25,23 @@ import React from "react"
 export default function Admin() {
 
 
-    const [visible, setVisible] = useState(false)
+    const [formReptile, setFormReptile] = useState(false)
+    const [formCategory, setFormCategory] = useState(false)
+    const [formFood, setFormFood] = useState(false)
 
-    const isVisible = () => {
-        setVisible(!visible)
+    const formReptileIsVisible = () => {
+        setFormReptile(!formReptile)
+
+    }
+
+    const formCategoryIsVisible = () => {
+        setFormCategory(!formCategory)
+
+    }
+
+    const formFoodIsVisible = () => {
+        setFormFood(!formFood)
+
     }
 
 
@@ -35,19 +51,23 @@ export default function Admin() {
     return (
 
         <View style={styles.container}>
-            <Button onPress={() => { isVisible() }}>
+            <Button onPress={() => { formReptileIsVisible() }}>
                 ajouté un reptile
-            </Button>
-            {visible ?<FormulaireReptile />: null}
-            <Button>
+            </Button >
+            {formReptile ?<FormulaireReptile />: null}
+            <Button onPress={()=> {formCategoryIsVisible()}}>
                 ajouté une catégorie de reptile
             </Button>
-            <Button>
+            {formCategory ? <FormulaireCategory/> : null}
+            <Button onPress={()=> {formFoodIsVisible()}}>
                 ajouté de la nourriture pour reptile
             </Button>
-            <Button>
+            {formFood ? <FormulaireFood/> : null}
+
+            <Button >
                 ajouté de la nourriture pour proie
             </Button>
+
 
 
         </View>

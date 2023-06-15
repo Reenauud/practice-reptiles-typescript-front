@@ -1,5 +1,4 @@
-import { gql } from "@apollo/client";
-import client from "../client";
+import gql from "graphql-tag";
 
 export const CreateUserMutation = gql`
   query GetAllUsers {
@@ -22,6 +21,24 @@ mutation CreateReptile($reptile: CreateReptileInput!) {
     name
     price
     quantity
+  }
+}
+`;
+
+export const CREATE_FAMILY = gql `
+mutation CreateFamily($family: CreateFamilyInput!) {
+  createFamily(family: $family) {
+    type
+  }
+}
+`;
+
+export const CREATE_FOOD = gql`
+mutation CreateFood($food: CreateFoodInput!) {
+  createFood(food: $food) {
+    foodName
+    foodPrice
+    foodCategory
   }
 }
 `;
