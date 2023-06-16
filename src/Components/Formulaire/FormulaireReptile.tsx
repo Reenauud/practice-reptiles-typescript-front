@@ -1,13 +1,14 @@
 import React, { Provider, useEffect, useState } from 'react';
-import { Button, TextInput, View, SafeAreaView } from 'react-native';
+import { Button, TextInput, View, SafeAreaView, Platform} from 'react-native';
 import { Form, Formik } from 'formik';
 // import { useForm } from 'react-hook-form';
 import { CREATE_REPTILE } from "../../GraphQL/Mutation";
 import { create } from 'react-test-renderer';
 import { useMutation } from '@apollo/react-hooks';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-
+import * as ImagePicker from "expo-image-picker"
 import * as SecureStore from 'expo-secure-store';
+
 
 export const FormulaireReptile = () => {
 
@@ -15,11 +16,22 @@ export const FormulaireReptile = () => {
     const [description, setDescription] = useState("")
     const [price, setPrice] = useState("")
     const [quantity, setQuantity] = useState("")
-
     const [createReptile, setCreateReptile] = useState({})
-
-
     const [create, { loading, error }] = useMutation(CREATE_REPTILE)
+    const [image, setImage] = useState("")
+
+    const pickImage = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [4,3],
+            quality: 1,
+        })
+        console.log(result);
+        if(!result.canceled){
+            setImage(result.assets[0].uri)
+        }
+    }
 
 
     const onSubmit = () => {
@@ -41,6 +53,8 @@ export const FormulaireReptile = () => {
 
 
         <SafeAreaView>
+
+
             <View style={{ flex: 0, width: "100%", alignItems: "center", }}>
 
                 <TextInput
@@ -91,6 +105,9 @@ export const FormulaireReptile = () => {
                     title="Envoyer"
                     color="#841584"
                 />
+
+                <Button title='Pick an image' onPress={pickImage}/>
+
 
             </View>
 

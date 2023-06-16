@@ -30,9 +30,9 @@ export default function App() {
           {/* <Stack.Screen name="Home" component={Home} /> */}
           {/* <Stack.Screen name="Food" component={Food} />
           <Stack.Screen name="News" component={News} /> */}
-         <Stack.Screen name="Connexion" component={Connexion} />
+         {/* <Stack.Screen name="Connexion" component={Connexion} */}
           <Stack.Screen name = "Admin" component={Admin}/>
-          <Stack.Screen name = "CardReptile" component={CardReptiles}/>
+          {/* <Stack.Screen name = "CardReptile" component={CardReptiles}/> */}
         </Stack.Navigator>
       </NavigationContainer>
     </ApolloProvider>
