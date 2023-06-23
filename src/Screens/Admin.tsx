@@ -1,30 +1,13 @@
 
+import React, { useState } from "react"
 import { Button } from "@rneui/themed"
-// import React from "react"
 import { View, Text, StyleSheet } from "react-native"
-// import { SafeAreaView } from "react-native-safe-area-context"
-// import Connexion from "./Connexion"
-// import Home from "./Home"
-import { useState } from "react"
-// import { TouchableOpacity } from "react-native-gesture-handler"
-// import Formik from 'formik';
-// import { Form, FormProvider, useForm } from "react-hook-form"
-// import { Input } from "@mui/material"
 import { FormulaireReptile } from "../Components/Formulaire/FormulaireReptile"
-import React from "react"
-// import { useMutation } from "@apollo/client"
-// import { CREATE_REPTILE } from "../GraphQL/Mutation"
 import CardReptiles from "../Components/CardReptiles"
 import { FormulaireCategory } from "../Components/Formulaire/FormulaireCategory"
 import { FormulaireFood } from "../Components/Formulaire/FormulaireFood"
 
-
-
-
-
 export default function Admin() {
-
-
     const [formReptile, setFormReptile] = useState(false)
     const [formCategory, setFormCategory] = useState(false)
     const [formFood, setFormFood] = useState(false)
@@ -43,10 +26,6 @@ export default function Admin() {
         setFormFood(!formFood)
 
     }
-
-
-
-    // ici requette graphql
 
     return (
 
@@ -67,11 +46,7 @@ export default function Admin() {
             <Button >
                 ajouté de la nourriture pour proie
             </Button>
-
-
-
         </View>
-
     )
 
 
@@ -108,14 +83,6 @@ const styles = StyleSheet.create({
         height: 100,
         width: 100
     },
-
-    hide: {
-
-
-
-    }
-
-
 
 });
 

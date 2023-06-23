@@ -49,9 +49,6 @@ export default function Connexion({navigation}:any) {
 
   });
 
- 
-
-
   async function save(key : string, value : string) {
     await SecureStore.setItemAsync(key, value);
   }
