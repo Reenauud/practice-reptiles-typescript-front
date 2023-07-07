@@ -1,5 +1,12 @@
 import gql from "graphql-tag";
 
+
+export const GET_TOKEN = gql`
+mutation GetToken($email: String!, $password: String!) {
+   getToken(email: $email, password: $password)
+ }
+`;
+
 export const CreateUserMutation = gql`
   query GetAllUsers {
     getAllUsers {
@@ -8,22 +15,40 @@ export const CreateUserMutation = gql`
   }
 `;
 
-export const GET_TOKEN = gql`
-mutation GetToken($email: String!, $password: String!) {
-   getToken(email: $email, password: $password)
- }
-`;
+// export const CREATE_REPTILE = gql`
+// mutation CreateReptile($reptile: CreateReptileInput!) {
+//   createReptile(reptile: $reptile) {
+//     description
+//     name
+//     price
+//     quantity
+//   }
+// }
+// `;
 
-export const CREATE_REPTILE = gql`
+// export const CREATE_REPTILE = gql `
+// mutation CreateReptile($category: CreateCategoryInput!, $reptile: CreateReptileInput!) {
+//   createReptile(category: $category, reptile: $reptile) {
+//     name
+//     description
+//     price
+//     quantity
+//     category {
+//       categoryName
+//     }
+//   }
+// }
+// `
+
+export const CREATE_REPTILE = gql `
 mutation CreateReptile($reptile: CreateReptileInput!) {
   createReptile(reptile: $reptile) {
-    description
     name
+    description
     price
-    quantity
   }
 }
-`;
+`
 
 export const CREATE_FAMILY = gql `
 mutation CreateFamily($family: CreateFamilyInput!) {

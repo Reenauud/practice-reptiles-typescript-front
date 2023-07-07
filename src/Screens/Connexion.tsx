@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../app/RootReducers";
 import { setMessage } from "../app/MessageSlice";
 import { useNavigationContainerRef } from "@react-navigation/native";
+import { setReptileI } from "../app/ReptileSlice";
 
 import Home from '../Screens/Home'
 
@@ -26,21 +27,15 @@ export default function Connexion({navigation}:any) {
   const [users, setUsers] = useState([]);
   const dispatch = useDispatch()
   const {message} = useSelector((state: RootState) => state.message)
-  // const islogin = (email, pass) => {
-  //   alert(email + pass);
-  // };
+
 
   const [getConnexion, { data, loading, error }] = useMutation(GET_TOKEN , {
 
     onCompleted(data) {
       save("token", data.getToken)
-      console.log("LOG", data.getToken)
       dispatch(setMessage(data.getToken))
       if(data.getToken){
-        alert(message)
         navigation.navigate('Admin')
-
-
       }else{
         alert("essaye encore")
       }
@@ -49,7 +44,7 @@ export default function Connexion({navigation}:any) {
 
   });
 
- 
+  
 
 
   async function save(key : string, value : string) {
@@ -76,6 +71,7 @@ export default function Connexion({navigation}:any) {
             placeholder="Mot de passe"
             placeholderTextColor="#9a73ef"
             autoCapitalize="none"
+            secureTextEntry={true}
             onChangeText={(text) => setPassword(text)}
           />
         </View>
