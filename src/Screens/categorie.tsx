@@ -1,20 +1,20 @@
-import { useQuery } from "@apollo/client"
-import React from "react"
-import { View } from "react-native"
+// import { useQuery } from "@apollo/client"
+// import React from "react"
+// import { View } from "react-native"
 
 
-export default function ScreenAllCategory () { 
+// export default function ScreenAllCategory () { 
 
 
 
-    const [getAllCategory] = useQuery()
+//     const [getAllCategory] = useQuery()
 
-    return(
+//     return(
 
-        <View>
+//         <View>
 
-        </View>
+//         </View>
    
-    )
+//     )
 
-}
+// }

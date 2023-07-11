@@ -54,7 +54,7 @@ export default function Admin() {
             <Button onPress={() => { formReptileIsVisible() }}>
                 ajouté un reptile
             </Button >
-            {formReptile ?<FormulaireReptile />: null}
+            {formReptile ?<FormulaireReptile/>: null}
             <Button onPress={()=> {formCategoryIsVisible()}}>
                 ajouté une catégorie de reptile
             </Button>

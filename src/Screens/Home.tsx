@@ -1,10 +1,9 @@
 import { StatusBar } from "expo-status-bar";
 import { Button, Icon, LinearProgress } from "@rneui/themed";
-import { StyleSheet, Text, View, ImageBackground, Image, SafeAreaView } from "react-native";
+import { StyleSheet, Text, View, ImageBackground, Image, SafeAreaView, Pressable } from "react-native";
 import SearchBar from "react-native-dynamic-search-bar";
 import Carrousel from "../Components/Carousel";
 import Menu from "../Components/Menu";
-import LinearGradient from 'react-native-linear-gradient';
 import logo from "../../assets/logo.png"
 import { borderRadius, flexbox, height, positions, style, width } from "@mui/system";
 import { Flex } from "@react-native-material/core";
@@ -13,198 +12,254 @@ import panier from "../../assets/panier.png"
 import iguan from "../../assets/iguan.jpg"
 import terra from "../../assets/terra.jpg"
 import CarouselCardItem from "../Components/Carousel"
-import  {TouchableOpacity}  from "react-native-gesture-handler";
-import { useNavigationContainerRef } from "@react-navigation/native";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { NavigationContainer } from '@react-navigation/native';
 import React, { useState } from "react";
+import Panier from "./Panier";
+import { LinearGradient } from "expo-linear-gradient";
 
 
 
 
-export default function Home({ navigation  }:any) {
+export default function Home({ navigation }: any) {
 
-  const onPress = ( )=> {
-    navigation.navigate("Connexion")
+
+  const GoToCoPage = () => {
+    return (
+      navigation.navigate("Connexion")
+    )
   }
 
+  const GoToPanier = () => {
+    return (
+      navigation.navigate("Panier")
+    )
+  }
 
-
+  const goToReptile = () => {
+    navigation.navigate("Reptiles")
+  }
 
   return (
-    <View style={styles.background}>
+    <LinearGradient
+      colors={['#006400', '#FFFFFF',]}
+      style={styles.background}
+    >
+      <View style={styles.background}>
 
-      <View style={styles.header}>
+        <View style={styles.header}>
 
-     
-          <TouchableOpacity onPress={onPress} style={styles.touchable}>
-            <Image source={userIcon} resizeMode={"contain"} style={styles.userIcon}></Image>
+          <TouchableOpacity   >
+            <Pressable onPress={() => { GoToCoPage() }} style={styles.touchable} >
+              <Image source={userIcon} resizeMode={"contain"} style={styles.userIcon} ></Image>
+            </Pressable>
+
           </TouchableOpacity><View />
-          
-        
+          <View style={styles.containerLogo} >
+
+            <ImageBackground source={logo} resizeMode={"cover"} style={styles.image}></ImageBackground>
+
+
+          </View>
+
+
+          <Pressable onPress={() => { GoToPanier() }} style={styles.touchableb} >
+
+            <Image source={panier} resizeMode={"contain"} style={styles.panier}></Image>
+          </Pressable>
+
+        </View>
+
+        <View style={styles.carousel}>
+          <Text>nos nouveauté</Text>
+          <CarouselCardItem />
+
+        </View>
+        <View style={styles.menu}>
+
+          <View style={styles.containerReptile}>
+
+            <Pressable style={styles.reptiles} onPress={() => { goToReptile() }}>
+              <Image
+                resizeMode="cover"
+                style={styles.reptileCategory}
+                source={iguan}
+              />
+
+            </Pressable>
+            <Text style={styles.text}>REPTILES</Text>
 
 
 
 
-  <ImageBackground source={logo} resizeMode={"cover"} style={styles.image}></ImageBackground>
 
+            <Image
+              resizeMode="cover"
+              style={styles.reptileCategory}
+              source={terra}
+            />
 
-
-  <ImageBackground source={panier} resizeMode={"contain"} style={styles.panier}></ImageBackground>
-
-
-      </View>
-
-      <View style={styles.carousel}>
-        {/* <Carrousel/> */}
-        <CarouselCardItem />
-
-      </View>
-      <View style={styles.menu}>
-
-        <View style={styles.containerReptile}>
-
-      {/* <ImageBackground source={iguan} resizeMode={"cover"} style={styles.reptileCategory}></ImageBackground> */}
-      <Image
-      resizeMode="cover"
-          style={styles.reptileCategory}
-          source={iguan}
-        />
-        <Text style={styles.text}>REPTILES</Text>
-        
-
-<Image
-      resizeMode="cover"
-          style={styles.reptileCategory}
-          source={terra}
-        />
-
-      {/* <ImageBackground source={iguan} resizeMode={"cover"} style={{borderRadius:10}}></ImageBackground>
+            {/* <ImageBackground source={iguan} resizeMode={"cover"} style={{borderRadius:10}}></ImageBackground>
       <Text> reptiles</Text> */}
-      <Text style={styles.text}>MATERIEL</Text>
+            <Text style={styles.text}>MATERIEL</Text>
+
+          </View>
+
+
+
+        </View>
+
+
 
       </View>
-
-
-
-      </View>
-   
-
-
-    </View>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    backgroundColor: "lightgreen",
+    // backgroundColor: "lightgreen",
     justifyContent: "space-between",
 
   },
 
-    image: {
-      flex: 0,
-      width: "80%",
-      height: "100%",
-      marginRight: "2%",
-    },
+  reptiles: {
+    flex: 1,
+    width: "100%",
+    height: "100%",
+  },
 
-    test:{
-      flex:1,
-      height:10,
-      width:10
+  image: {
+    flex: 0,
+    width: "100%",
+    height: "100%",
+    marginRight: "2%",
+    marginTop: "0%",
+  },
 
-
-    },
-
-    header:{
-      backgroundColor: "black",
-      height: "17%",
-      flex:1,
-      alignItems: "flex-end",
-      flexDirection: "row"
-    },
-
-    userIcon: {
-      flex:1,
-      width: 100,
-      height: 40,
-      position:"absolute",
-      top:20,
-      left:0,
-    },
-
-    panier:{
-
-      flex:1,
-      width: 100,
-      height: 40,
-      position:"absolute",
-      top:70,
-      left:320
-
-    },
-    menu:{
-      flex:3,
-      height:10,
-      alignItems:"center",
-      marginBottom:50,
-      marginTop:50
+  test: {
+    flex: 1,
+    height: 10,
+    width: 10
 
 
-    },
+  },
 
-    carousel:{
-      backgroundColor: "blue",
-      flex:1,
-      borderRadius: 30,
-      marginTop:"10%",
-      marginLeft:"5%",
-      marginRight:"5%",
-      opacity:0.2,
-      zIndex:0
+  header: {
+    backgroundColor: "black",
+    height: "17%",
+    flex: 1,
+    alignItems: "flex-end",
+    flexDirection: "row"
+  },
+
+  userIcon: {
+    flex: 1,
+    width: 100,
+    height: 40,
+    position: "absolute",
+    top: 20,
+    left: 0,
+  },
+
+
+  panier: {
+
+    // flex:1,
+    width: "100%",
+    height: 50,
+
+    position: "relative",
+    // left:300,
+    // backgroundColor:"red",
+    flex: 0.5,
+    marginBottom: 35,
+    justifyContent: "flex-start"
+
+  },
+  menu: {
+    flex: 3,
+    height: 10,
+    alignItems: "center",
+    marginBottom: 50,
+    marginTop: 50
+
+
+  },
+
+  carousel: {
+    // backgroundColor: "blue",
+    flex: 1,
+    borderRadius: 30,
+    marginTop: "10%",
+    marginLeft: "5%",
+    marginRight: "5%",
+    // opacity:0.2,
+    zIndex: 0
 
 
 
 
- 
-    },
 
-    reptileCategory:{
-      flex:1,
-      borderRadius:50,
-      width:"100%",
- 
+  },
 
-      
-      
+  reptileCategory: {
+    flex: 1,
+    // borderRadius:50,
+    width: "100%",
+    // height:"100%"
+    borderRadius: 20
 
-    },
 
-    touchable:{
-      width: 80,
-      height:100,
-      justifyContent: "center",
-      alignContent: "center",
-      alignItems: "center",
-      zIndex: 1
 
-    },
 
-    containerReptile:{
-      width:180,
-      flex:1,
-      alignItems:"center"
-    },
 
-    text:{
-      marginTop:10,
-      marginBottom:40,
-      fontSize:17
 
-    }
+  },
 
-  });
+  containerLogo: {
+    width: "100%",
+    height: "100%",
+    flex: 1,
 
+  },
+
+  touchable: {
+    width: 80,
+    height: 100,
+    justifyContent: "center",
+    alignContent: "center",
+    alignItems: "center",
+    zIndex: 1,
+
+  },
+
+  touchableb: {
+    justifyContent: "flex-end",
+    alignContent: "center",
+    alignItems: "center",
+    zIndex: 1,
+    // backgroundColor:"blue",
+    height: "100%",
+    width: "25%"
+
+  },
+
+  containerReptile: {
+    width: 180,
+    flex: 1,
+    alignItems: "center"
+  },
+
+  text: {
+    marginTop: 10,
+    marginBottom: 40,
+    fontSize: 17
+
+  }
+
+});
 
 function rgba(arg0: number, arg1: number, arg2: number, arg3: number): any | import("react-native").ColorValue | undefined {
   throw new Error("Function not implemented.");

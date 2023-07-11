@@ -17,7 +17,7 @@ const CarouselCards = () => {
         renderItem={CarouselCardItem}
         sliderWidth={SLIDER_WIDTH}
         itemWidth={ITEM_WIDTH}
-        // inactiveSlideShift={1000}
+        // inactiveSlideShift={200}
         // useScrollView={true}
         autoplay={true}
       />

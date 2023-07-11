@@ -1,26 +1,12 @@
-import React, { Provider, useEffect, useRef, useState } from 'react';
-import { Button, TextInput, View, SafeAreaView, Platform, Image, Alert } from 'react-native';
-import { Form, Formik } from 'formik';
-// import { useForm } from 'react-hook-form';
+import React, { useEffect, useRef, useState } from 'react';
+import { Button, TextInput, View, SafeAreaView } from 'react-native';
 import { CREATE_REPTILE } from "../../GraphQL/Mutation";
-import { create } from 'react-test-renderer';
 import { useMutation, useQuery } from '@apollo/react-hooks';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import * as ImagePicker from "expo-image-picker"
-import * as SecureStore from 'expo-secure-store';
 import { Cloudinary } from "@cloudinary/url-gen";
 import { AdvancedImage } from "cloudinary-react-native";
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../app/RootReducers';
-import { setReptileI } from '../../app/ReptileSlice';
 import { SelectList } from "react-native-dropdown-select-list"
 import { GET_ALL_CATEGORIES, GET_CATEGORY_BY_NAME } from '../../GraphQL/Queries';
-// import {firebase} from '../../config'
-import { Constants } from 'expo-constants';
-
-
-
-
 
 
 export const FormulaireReptile = () => {
@@ -30,35 +16,23 @@ export const FormulaireReptile = () => {
     const [price, setPrice] = useState("")
     const [quantity, setQuantity] = useState("")
     const [selected, setSelected] = useState("")
-    const [createReptile, setCreateReptile] = useState({})
+    // const [createReptile, setCreateReptile] = useState({})
     const [create, { loading, error }] = useMutation(CREATE_REPTILE)
     const [image, setImage] = useState({})
-    const [uploading, setUploading] = useState(false)
-    const [allCategory, setAllCategorie] = useState([])
     const allCategoryData: any[] = []
     const [categoryId, setCategoryId] = useState()
     const [photoId, setPhotoId] = useState("")
-    // const {reptileI} = useSelector((state: RootState) => state.reptileI)
-    // const dispatch = useDispatch()
-    const [category, setCategory] = useState("")
-    const imagePicker = useRef(null)
+    // const [category, setCategory] = useState("")
+    // const imagePicker = useRef(null)
 
-    // const cld = new Cloudinary({
-    //     cloud: {
-    //         cloudName: "ddnauhqyh"
-    //     }
-    // })
+    const cld = new Cloudinary({
+        cloud: {
+            cloudName: "ddnauhqyh"
+        }
+    })
 
 
-    // const myImage = cld.image("sample")
-
-    const [previewImage, setPreviewImage] = useState(null)
-    const [selectedFile, setSelectedFile] = useState(null)
-    const [uploadedUrl, setUploadedUrl] = useState(null)
-
-
-
-
+    const myImage = cld.image(photoId)
 
 
     const pickImage = async () => {
@@ -69,103 +43,41 @@ export const FormulaireReptile = () => {
             quality: 1
         })
         if (!result.canceled) {
-            // console.log(result.assets[0].uri)
-            // const source = result.assets[0].uri
-            // setImage(source)
+            const res = result.assets[0].uri.split("/"[0])
+            const imageName = res.pop()
 
-    const res = result.assets[0].uri.split("/"[0])
-    const imageName = res.pop()
+            let picture = {
+                uri: result.assets[0].uri,
+                type: `test/${result.assets[0].type}`,
+                name: `test.${imageName}`
+            }
 
-    console.log("result ::::::" , result.assets[0].fileName)
+            cloudinaryUpload(picture)
+        }
 
-    console.log("result==================================", imageName)
-    let newFile = {
-        uri: result.assets[0].uri,
-        type:`test/${result.assets[0].type}`,
-        name:`test.${imageName}`
     }
 
-    cloudinaryUpload(newFile)
-
-
-    console.log("ID EN HAUT ", photoId)
-    
-
-
- 
-
-        //  let base64Img = `data:image/jpg;base64,${source}`
-      
-        //     //Add your cloud name
-        //     let apiUrl = 'https://api.cloudinary.com/v1_1/ddnauhqyh/image/upload';
-        
-        //     let data = {
-        //       "file": base64Img,
-        //       "upload_preset": "imgUpload",
-        //     }
-
-        //     console.log("dataavant", data)
-      
-        //     fetch(apiUrl, {
-        //       body: JSON.stringify(data),
-        //       headers: {
-        //         'content-type': 'application/json'
-        //       },
-        //       method: 'POST',
-        //     }).then(async r => {
-        //         let data = await r.json()
-        //         console.log("data", data)
-        //         return data.secure_url
-        //   }).catch(err=>console.log(err))
-        }
-
-        }
-    
 
 
 
-    // const uploadImage = async () => {
-    //     setUploading(true)
-    //     const response = await fetch(image)
-    //     const blob = await response.blob()
-    //     const filename = image.substring(image.lastIndexOf('/') + 1)
-    //     var ref = firebase.storage().ref().child(filename).put(blob)
-
-    //     try {
-
-    //         await ref
-            
-    //     } catch (error) {
-    //         console.log(error)     
-    //     }
-    //     setUploading(false)
-    //     Alert.alert("photo upload ")
-    //     setImage("")
-
-    
-    // }
 
 
-    const cloudinaryUpload = async (image : any) => {
+    const cloudinaryUpload = async (image: any) => {
         const data = new FormData()
         data.append('file', image)
         data.append('upload_preset', 'imgUpload')
-        data.append('cloud_name', 'ddnauhqyh' )
+        data.append('cloud_name', 'ddnauhqyh')
 
 
-            await fetch("https://api.cloudinary.com/v1_1/ddnauhqyh/upload", {
-                method: 'post',
-                body: data
-             }).then(res => res.json())
+        await fetch("https://api.cloudinary.com/v1_1/ddnauhqyh/upload", {
+            method: 'post',
+            body: data
+        }).then(res => res.json())
             .then(
-                data => {setImage(data), console.log("dataaaaa", image), setPhotoId(data.public_id), console.log("ID -------------", photoId)}).catch(err => {
+                data => { setImage(data), console.log("dataaaaa", image), setPhotoId(data.public_id), console.log("ID -------------", photoId) }).catch(err => {
                     console.log(err)
-                    alert(err)})
-
-
-                
-
-
+                    alert(err)
+                })
 
 
     }
@@ -214,14 +126,34 @@ export const FormulaireReptile = () => {
             name: nom,
             price: parseInt(price, 10),
             quantity: parseInt(quantity, 10),
-            category: categoryId
+            category: categoryId,
+            photoId: photoId
         };
 
-        create({
-            variables: { reptile: newReptile },
-        });
+        try {
 
+            create({
+                variables: { reptile: newReptile },
+            });
+
+            alert("reptile bien ajouté =) ")
+
+            setDescription("")
+            setNom("")
+            setPrice("")
+            setQuantity("")
+            setPhotoId("")
+            // setCategoryId(undefined)
+
+            // a voir pour remise par defaut du select // 
+
+        } catch (error) {
+
+            alert(error)
+
+        }
     }
+
     return (
 
         <SafeAreaView>
@@ -270,25 +202,16 @@ export const FormulaireReptile = () => {
 
 
                 <SelectList
-
                     setSelected={(value: string) => categorySelected(value)}
                     data={allCategoryData}
                     save="value"
                     boxStyles={{ backgroundColor: "lightGreen" }}
-
-
-
                 />
 
-
-                 {/* <Button title='search image' onPress={imagePicker.current} /> */}
-                <Button title='upload' onPress={pickImage} /> 
-          
-
-           
+                <Button title='upload' onPress={pickImage} />
 
                 {/* {image && <Image source={{ uri:image}} style={{width:200, height:200}}></Image>} */}
-                {/* <AdvancedImage cldImg={myImage} style={{ width: 300, height: 300 }} /> */}
+                {photoId ? <AdvancedImage cldImg={myImage} style={{ width: 300, height: 300 }} /> : null}
                 <Button
                     onPress={() => onSubmit()}
                     title="Send"
@@ -298,16 +221,9 @@ export const FormulaireReptile = () => {
                     // onPress={()=> change()}
                     title='changement' />
 
-
-
-
-
-
             </View>
 
-
         </SafeAreaView>
-
     )
 
 }

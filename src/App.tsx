@@ -12,6 +12,8 @@ import { Provider } from "react-redux";
 import { store } from './app/Store'
 import Admin from "./Screens/Admin";
 import CardReptiles from "./Components/CardReptiles";
+import Panier from "./Screens/Panier";
+import Reptiles from "./Screens/Reptiles";
 
 const Stack = createNativeStackNavigator();
 
@@ -27,9 +29,11 @@ export default function App() {
               headerShown: false
             }}
           >
-            {/* <Stack.Screen name="Home" component={Home} />
+             <Stack.Screen name="Home" component={Home} />
              <Stack.Screen name="Food" component={Food} />
-            <Stack.Screen name="News" component={News} /> */}
+            <Stack.Screen name="News" component={News} /> 
+            <Stack.Screen name="Panier" component={Panier}/>
+            <Stack.Screen name="Reptiles" component={Reptiles}/>
             <Stack.Screen name="Connexion" component={Connexion} />
             <Stack.Screen name="Admin" component={Admin} />
             <Stack.Screen name="CardReptile" component={CardReptiles} /> 
