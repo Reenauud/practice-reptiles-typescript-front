@@ -9,6 +9,8 @@ import { SelectList } from "react-native-dropdown-select-list"
 import { GET_ALL_CATEGORIES, GET_CATEGORY_BY_NAME } from '../../GraphQL/Queries';
 
 
+import UploadPictures from "../UploadPictures"
+
 export const FormulaireReptile = () => {
 
     const [nom, setNom] = useState("")
@@ -74,7 +76,7 @@ export const FormulaireReptile = () => {
             body: data
         }).then(res => res.json())
             .then(
-                data => { setImage(data), console.log("dataaaaa", image), setPhotoId(data.public_id), console.log("ID -------------", photoId) }).catch(err => {
+                data => { setImage(data), setPhotoId(data.public_id) }).catch(err => {
                     console.log(err)
                     alert(err)
                 })
@@ -209,6 +211,7 @@ export const FormulaireReptile = () => {
                 />
 
                 <Button title='upload' onPress={pickImage} />
+
 
                 {/* {image && <Image source={{ uri:image}} style={{width:200, height:200}}></Image>} */}
                 {photoId ? <AdvancedImage cldImg={myImage} style={{ width: 300, height: 300 }} /> : null}

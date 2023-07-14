@@ -31,7 +31,7 @@ export default function App() {
           >
              <Stack.Screen name="Home" component={Home} />
              <Stack.Screen name="Food" component={Food} />
-            <Stack.Screen name="News" component={News} /> 
+            <Stack.Screen name="News" component={News}/> 
             <Stack.Screen name="Panier" component={Panier}/>
             <Stack.Screen name="Reptiles" component={Reptiles}/>
             <Stack.Screen name="Connexion" component={Connexion} />

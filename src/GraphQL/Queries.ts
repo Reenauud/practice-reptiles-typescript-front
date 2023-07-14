@@ -28,10 +28,11 @@ export const GET_FOOD_LIST = gql`
 export const GET_ALL_CATEGORIES = gql `
 
 query GetAllCategory {
-    getAllCategory {
-      id
-      categoryName
-    }
-  }`;
+  getAllCategory {
+    id
+    categoryImage
+    categoryName
+  }
+}`;
 
   
