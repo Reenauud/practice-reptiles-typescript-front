@@ -113,6 +113,7 @@ export default function Home({ navigation }: any) {
 
       </View>
     </LinearGradient>
+
   );
 }
 
@@ -121,7 +122,6 @@ const styles = StyleSheet.create({
     flex: 1,
     // backgroundColor: "lightgreen",
     justifyContent: "space-between",
-
   },
 
   reptiles: {
@@ -210,9 +210,6 @@ const styles = StyleSheet.create({
     width: "100%",
     // height:"100%"
     borderRadius: 20
-
-
-
 
 
 
