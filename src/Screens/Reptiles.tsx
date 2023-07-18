@@ -1,21 +1,28 @@
-import React from "react"
-import { View, Text, StyleSheet } from "react-native"
+import React, { useEffect } from "react"
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
 import { LinearGradient } from "expo-linear-gradient"
 import { useQuery } from "@apollo/client"
-import {GET_ALL_CATEGORIES} from "../GraphQL/Queries"
+import { GET_ALL_CATEGORIES } from "../GraphQL/Queries"
 import { Cloudinary } from "@cloudinary/url-gen"
 import { AdvancedImage } from "cloudinary-react-native"
+import { TouchableHighlight } from "react-native-gesture-handler"
+import { useSelector } from "react-redux"
+import { RootState } from "../app/RootReducers"
+import { useDispatch } from "react-redux"
+import { setCategoryId } from "../app/CategorySlice"
 
 
 export default function Reptiles() {
 
-    const {loading, data, error} = useQuery(GET_ALL_CATEGORIES)
-    
- 
-    if(loading){
+    const categoryId = useSelector((state: RootState) => state.categoryId)
+    const dispatch = useDispatch()
+    const { loading, data, error } = useQuery(GET_ALL_CATEGORIES)
+
+
+    if (loading) {
         console.log('loading')
     }
-    if(error){
+    if (error) {
         console.log("ERROR", error)
     }
 
@@ -35,47 +42,63 @@ export default function Reptiles() {
 
     //             )
     //         })
-    
+
     //     }
 
     // }
 
+    const OnImagePress = (id: number) => {
+
+
+
+        return (
+            alert(id),
+            dispatch(setCategoryId(id)
+
+            )
+        )
+    }
+
+
     const rept = data?.getAllCategory.map((a: any) => {
         const myImage = cld.image(a.categoryImage)
 
-        return(
+        return (
 
- 
+            <View style={{ alignItems: "center", flex: 0.5 }}>
                 <View>
-                              <Text>{a.categoryName}</Text>
-                <AdvancedImage cldImg={myImage} style={{width:100, height:100}}></AdvancedImage>
-                
+                    <TouchableOpacity onPress={() => {
+                        OnImagePress(a.id)
+                    }}>
+
+                        <AdvancedImage cldImg={myImage} style={{ width: 100, height: 100 }} ></AdvancedImage>
+                        <Text>{a.categoryName}</Text>
+
+
+                    </TouchableOpacity>
                 </View>
-      
 
-
+            </View>
         )
 
-
-
-})
+    })
 
     return (
         <View style={styles.container} >
-        <LinearGradient
-            colors={['#006400', '#FFFFFF',]}
-            style={styles.container}
+            <LinearGradient
+                colors={['#006400', '#FFFFFF',]}
+                style={styles.container}
 
-        >
+            >
 
-        {rept}
+                {rept}
 
-                  
-        </LinearGradient>
+
+            </LinearGradient>
         </View>
 
 
-        
+
     )
 }
 
@@ -85,7 +108,7 @@ const styles = StyleSheet.create({
         backgroundColor: "lightgreen",
         justifyContent: "center",
         alignContent: "center",
-        height: "100%"
+        height: "100%",
     },
 
 })

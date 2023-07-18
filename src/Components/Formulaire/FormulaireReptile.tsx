@@ -128,14 +128,13 @@ export const FormulaireReptile = () => {
             name: nom,
             price: parseInt(price, 10),
             quantity: parseInt(quantity, 10),
-            category: categoryId,
             photoId: photoId
         };
 
         try {
 
             create({
-                variables: { reptile: newReptile },
+                variables: { reptile: newReptile, categoryId },
             });
 
             alert("reptile bien ajouté =) ")

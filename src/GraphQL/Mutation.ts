@@ -41,11 +41,13 @@ export const CreateUserMutation = gql`
 // `
 
 export const CREATE_REPTILE = gql `
-mutation CreateReptile($reptile: CreateReptileInput!) {
-  createReptile(reptile: $reptile) {
+mutation CreateReptile($categoryId: Float!, $reptile: CreateReptileInput!) {
+  createReptile(categoryId: $categoryId, reptile: $reptile) {
     name
     description
     price
+    quantity
+    photoId
   }
 }
 `
