@@ -20,12 +20,12 @@ const styles = StyleSheet.create({
   container: {
     // borderRadius: 8,
     // paddingBottom: 40,
-    shadowColor: "#000",
+    // shadowColor: "#000",
     flexDirection:"row",
     alignItems:"center",
  
-    shadowOpacity: 0.29,
-    shadowRadius: 4.65,
+    // shadowOpacity: 0.29,
+    // shadowRadius: 4.65,
   },
   image: {
     width: 130,
