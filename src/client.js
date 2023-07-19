@@ -14,7 +14,6 @@ const httpLink = createHttpLink({
 const authLink = setContext(async (_, { headers }) => {
   // get the authentication token from local storage if it exists
   const token = await SecureStore.getItemAsync("token");
-  console.log("token", token);
   // return the headers to the context so htpLink can read them
   return {
     headers: {
@@ -27,6 +26,7 @@ const authLink = setContext(async (_, { headers }) => {
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
+  onError: (e) => { console.log(e) }
 });
 
 export default client;
