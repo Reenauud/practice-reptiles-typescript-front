@@ -4,12 +4,14 @@ import MessageSlice from "./MessageSlice";
 import ReptileSlice from "./ReptileSlice"
 import PictureSlice from "./PictureSlice";
 import CategorySlice from "./CategorySlice";
+import CategoryNameSlice from "./CategoryNameSlice";
 
 const rootReducer = combineReducers({
     message: MessageSlice,
     reptileI: ReptileSlice,
     photoId: PictureSlice,
-    categoryId: CategorySlice
+    categoryId: CategorySlice,
+    categoryName: CategoryNameSlice
     
 })
 

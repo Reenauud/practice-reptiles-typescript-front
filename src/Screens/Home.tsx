@@ -37,7 +37,7 @@ export default function Home({ navigation }: any) {
   }
 
   const goToReptile = () => {
-    navigation.navigate("Reptiles")
+    navigation.navigate("Categories")
   }
 
   return (

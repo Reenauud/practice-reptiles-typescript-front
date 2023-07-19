@@ -45,3 +45,15 @@ query GetAllCategories {
   }
 }`;
   
+export const GET_ALL_REPTILES_BY_CATEGORY = gql `
+query GetAnimalsByCategory($categoryName: String!) {
+  getAnimalsByCategory(categoryName: $categoryName) {
+    id
+    name
+    scientificName
+    description
+    price
+    quantity
+    photoId
+  }
+}`
