@@ -60,7 +60,7 @@ export default function Reptiles() {
     }
 
 
-    const rept = data?.getAllCategory.map((a: any) => {
+    const rept = data?.getAllCategories.map((a: any) => {
         const myImage = cld.image(a.categoryImage)
 
         return (

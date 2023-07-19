@@ -84,6 +84,9 @@ export const FormulaireReptile = () => {
 
     }
     const result = useQuery(GET_ALL_CATEGORIES)
+        console.log("result ", result.data.data)
+
+    
 
     useEffect(() => {
         allCategoryData
@@ -93,7 +96,8 @@ export const FormulaireReptile = () => {
     }, [])
 
     if (result) {
-        result.data?.getAllCategory.map((cat: any) => {
+        console.log("ca passe ici")
+        result.data?.getAllCategories.map((cat: any) => {
             const data = {
                 key: cat.id,
                 value: cat.categoryName
@@ -109,7 +113,7 @@ export const FormulaireReptile = () => {
         },
         onCompleted(data) {
             try {
-                setCategoryId(data?.getCategoryByName.id)
+                setCategoryId(data?.getCategory.id)
             } catch (error) {
                 console.log(error)
             }
@@ -126,6 +130,7 @@ export const FormulaireReptile = () => {
         const newReptile = {
             description: description,
             name: nom,
+            scientificName: "",
             price: parseInt(price, 10),
             quantity: parseInt(quantity, 10),
             photoId: photoId

@@ -17,22 +17,31 @@ export const GET_FOOD_LIST = gql`
     }
  }`;
 
- export const GET_CATEGORY_BY_NAME = gql`
- query GetCategoryByName($categoryName: String!) {
-    getCategoryByName(categoryName: $categoryName) {
-      id
-      categoryName
-    }
-  }`;
+//  export const GET_CATEGORY_BY_NAME = gql`
+//  query GetCategoryByName($categoryName: String!) {
+//     getCategoryByName(categoryName: $categoryName) {
+//       id
+//       categoryName
+//     }
+//   }`;
+
+export const GET_CATEGORY_BY_NAME = gql `
+query GetCategory($categoryName: String!) {
+  getCategory(categoryName: $categoryName) {
+    id
+    categoryName
+    categoryImage
+  }
+}
+`
 
 export const GET_ALL_CATEGORIES = gql `
 
-query GetAllCategory {
-  getAllCategory {
+query GetAllCategories {
+  getAllCategories {
     id
-    categoryImage
     categoryName
+    categoryImage
   }
 }`;
-
   
