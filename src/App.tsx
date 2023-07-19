@@ -2,6 +2,7 @@ import React from "react";
 import { AppRegistry } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { StripeProvider } from '@stripe/stripe-react-native';
 import Home from "./Screens/Home";
 import Food from "./Screens/Food";
 import News from "./Screens/News";
@@ -12,6 +13,10 @@ import { Provider } from "react-redux";
 import {store} from './app/Store'
 import Admin from "./Screens/Admin";
 import CardReptiles from "./Components/CardReptiles";
+import Constants from "expo-constants";
+import PaymentScreen from "./Screens/PaymentScreen";
+
+const { manifest } = Constants;
 
 const Stack = createNativeStackNavigator();
 
@@ -22,19 +27,24 @@ export default function App() {
     <Provider store={store}>
     <ApolloProvider client={client}>
       <NavigationContainer>
-        <Stack.Navigator
-        initialRouteName="Home"
-        screenOptions={{
-          headerShown: false
-        }}
+        <StripeProvider
+        publishableKey={manifest?.extra?.stripePublishableKey}
         >
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Food" component={Food} />
-          <Stack.Screen name="News" component={News} />
-          <Stack.Screen name="Connexion" component={Connexion} />
-          <Stack.Screen name = "Admin" component={Admin}/>
-          <Stack.Screen name = "CardReptile" component={CardReptiles}/>
-        </Stack.Navigator>
+          <Stack.Navigator
+          initialRouteName="Home"
+          screenOptions={{
+            headerShown: false
+          }}
+          >
+            <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="Food" component={Food} />
+            <Stack.Screen name="News" component={News} />
+            <Stack.Screen name="Connexion" component={Connexion} />
+            <Stack.Screen name = "Admin" component={Admin}/>
+            <Stack.Screen name = "CardReptile" component={CardReptiles}/>
+            <Stack.Screen name = "payment" component={PaymentScreen}/>
+          </Stack.Navigator>
+        </StripeProvider>
       </NavigationContainer>
     </ApolloProvider>
     </Provider>

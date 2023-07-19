@@ -1,9 +1,15 @@
-import { StyleSheet, Text, View, ImageBackground, Image } from "react-native";
+import { StyleSheet, Text, View, ImageBackground, Image, Button } from "react-native";
 import CarouselCardItem from "../Components/Carousel"
-import React, { useState } from "react";
+import React from "react";
 import Header from "../Components/Header";
 
 export default function Home({ navigation  }:any) {
+  
+
+  const handlePayment = () => {
+    navigation.navigate("payment")
+  }
+
   return (
     <View style={styles.background}>
       <Header />
@@ -29,6 +35,9 @@ export default function Home({ navigation  }:any) {
           <Text style={styles.text}>MATERIEL</Text>
         </View>
       </View>
+      <Button onPress={handlePayment}
+      title="Pay"
+      />
     </View>
   );
 }
