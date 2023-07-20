@@ -25,6 +25,14 @@ export const GET_FOOD_LIST = gql`
 //     }
 //   }`;
 
+export const GET_ALL_REPTILES = gql`
+query GetAllReptiles {
+  getAllReptiles {
+    name
+    photoId
+  }
+}`
+
 export const GET_CATEGORY_BY_NAME = gql `
 query GetCategory($categoryName: String!) {
   getCategory(categoryName: $categoryName) {
@@ -54,6 +62,17 @@ query GetAnimalsByCategory($categoryName: String!) {
     description
     price
     quantity
+    photoId
+  }
+}`
+
+export const GET_ONE_REPTILES_BY_ID = gql`
+query GetOneReptile($getOneReptileId: Float!) {
+  getOneReptile(id: $getOneReptileId) {
+    id
+    name
+    description
+    scientificName
     photoId
   }
 }`

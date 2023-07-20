@@ -54,7 +54,6 @@ export default function Categories({navigation}: any) {
 
         dispatch(setCategoryName(categoryName))
 
-        alert(categoryName)
 
         return (
             // alert(id),
