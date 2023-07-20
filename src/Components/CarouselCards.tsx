@@ -12,7 +12,7 @@ const cld = new Cloudinary({
   }
 })
 
-const CarouselCardItem = ({ item, index }) => {
+const CarouselCardItem = ( {item , index } ) => {
   const myImage = cld.image(item.imgUrl)
   return (
     <View style={styles.container} key={index}>

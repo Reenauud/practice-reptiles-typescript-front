@@ -2,7 +2,6 @@ import React from 'react'
 import { View } from "react-native"
 import Carousel from 'react-native-snap-carousel'
 import CarouselCardItem, { SLIDER_WIDTH, ITEM_WIDTH } from './CarouselCards'
-import {data} from './DataCarousel'
 import { useQuery } from '@apollo/client'
 import { GET_ALL_REPTILES } from '../GraphQL/Queries'
 
@@ -13,9 +12,9 @@ const CarouselCards = () => {
 
   const dataaa : any = []
 
-     const ArrayOfData = data.getAllReptiles
+     const ArrayOfData = data?.getAllReptiles
 
-     const allData = ArrayOfData.forEach((e : any) => {
+     const allData = ArrayOfData?.forEach((e : any) => {
       const title = e.name
       const picture = e.photoId
       dataaa.push({title: title, imgUrl: picture})
