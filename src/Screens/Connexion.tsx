@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { GET_ALL_USERS } from "../GraphQL/Queries";
-import {GET_TOKEN} from "../GraphQL/Mutation"
+import { GET_TOKEN } from "../GraphQL/Mutation"
 import { Button } from "@rneui/themed";
 import { useQuery, useMutation } from "@apollo/client";
 import { create } from "react-test-renderer";
@@ -16,32 +16,28 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../app/RootReducers";
 import { setMessage } from "../app/MessageSlice";
 import { useNavigationContainerRef } from "@react-navigation/native";
+import { setReptileI } from "../app/ReptileSlice";
+import { LinearGradient } from "expo-linear-gradient";
 
 import Home from '../Screens/Home'
 
 
-export default function Connexion({navigation}:any) {
+export default function Connexion({ navigation }: any) {
   const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>();
   const [users, setUsers] = useState([]);
   const dispatch = useDispatch()
-  const {message} = useSelector((state: RootState) => state.message)
-  // const islogin = (email, pass) => {
-  //   alert(email + pass);
-  // };
+  const { message } = useSelector((state: RootState) => state.message)
 
-  const [getConnexion, { data, loading, error }] = useMutation(GET_TOKEN , {
+
+  const [getConnexion, { data, loading, error }] = useMutation(GET_TOKEN, {
 
     onCompleted(data) {
       save("token", data.getToken)
-      console.log("LOG", data.getToken)
       dispatch(setMessage(data.getToken))
-      if(data.getToken){
-        alert(message)
+      if (data.getToken) {
         navigation.navigate('Admin')
-
-
-      }else{
+      } else {
         alert("essaye encore")
       }
 
@@ -49,48 +45,58 @@ export default function Connexion({navigation}:any) {
 
   });
 
+
   async function save(key : string, value : string) {
-    await SecureStore.setItemAsync(key, value);
+   await SecureStore.setItemAsync(key, value);
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.connectWindow}>
-        <View style={styles.titleposition}>
-          {/* <Text style={styles.title}>Bienvenue</Text> */}
-        </View>
-        <View style={styles.viewInput}>
-          <TextInput
-            style={styles.input}
-            placeholder="Email"
-            placeholderTextColor="#9a73ef"
-            autoCapitalize="none"
-            onChangeText={(text)=> setEmail(text) }
-           
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Mot de passe"
-            placeholderTextColor="#9a73ef"
-            autoCapitalize="none"
-            onChangeText={(text) => setPassword(text)}
-          />
-        </View>
-        <View style={styles.txt}>
-          <Text>mot de passe oublié ? </Text>
-        </View>
-        <View style={styles.placementBtnCo}>
-          <TouchableOpacity
-            onPress={() => {
-              getConnexion({variables: {email, password}})
-            }}
-            style={styles.BtnCo}
-          >
-            <Text>Connexion</Text>
-          </TouchableOpacity>
+    <LinearGradient
+      colors={['#006400', '#FFFFFF',]}
+      style={styles.container}
+    >
+
+      <View style={styles.connectWindow} >
+
+        <View>
+          <View style={styles.titleposition}>
+            {/* <Text style={styles.title}>Bienvenue</Text> */}
+          </View>
+          <View style={styles.viewInput}>
+            <TextInput
+              style={styles.input}
+              placeholder="Email"
+              placeholderTextColor="#9a73ef"
+              autoCapitalize="none"
+              onChangeText={(text) => setEmail(text)}
+
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Mot de passe"
+              placeholderTextColor="#9a73ef"
+              autoCapitalize="none"
+              secureTextEntry={true}
+              onChangeText={(text) => setPassword(text)}
+            />
+          </View>
+          <View style={styles.txt}>
+            <Text>mot de passe oublié ? </Text>
+          </View>
+          <View style={styles.placementBtnCo}>
+            <TouchableOpacity
+              onPress={() => {
+                getConnexion({ variables: { email, password } })
+              }}
+              style={styles.BtnCo}
+            >
+              <Text>Connexion</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
-    </View>
+    </LinearGradient>
+
   );
 }
 
@@ -98,17 +104,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     height: "100%",
+    width: "100%",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "lightgrey",
+    // backgroundColor: "lightgrey",
   },
   connectWindow: {
-    position: "absolute",
-    backgroundColor: "darkgreen",
+    flex: 1,
+    backgroundColor: "transparent",
     zIndex: 10,
-    height: "60%",
-    width: "90%",
-    borderRadius: 20,
+    height: "100%",
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center"
   },
 
   textCo: {
@@ -128,6 +136,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     flex: 0,
     textAlign: "center",
+    width: "100%"
   },
 
   title: {
@@ -142,6 +151,7 @@ const styles = StyleSheet.create({
   },
   viewInput: {
     marginBottom: 20,
+    width: 200
   },
   txt: {
     flex: 0,

@@ -10,13 +10,15 @@ import Connexion from "./Screens/Connexion";
 import client from "./client";
 import { ApolloProvider } from "@apollo/client";
 import { Provider } from "react-redux";
-import {store} from './app/Store'
+import { store } from './app/Store'
 import Admin from "./Screens/Admin";
 import CardReptiles from "./Components/CardReptiles";
 import Constants from "expo-constants";
 import PaymentScreen from "./Screens/PaymentScreen";
 
 const { manifest } = Constants;
+import Panier from "./Screens/Panier";
+import Reptiles from "./Screens/Reptiles";
 
 const Stack = createNativeStackNavigator();
 
@@ -39,6 +41,8 @@ export default function App() {
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="Food" component={Food} />
             <Stack.Screen name="News" component={News} />
+            <Stack.Screen name="Panier" component={Panier}/>
+            <Stack.Screen name="Reptiles" component={Reptiles}/>
             <Stack.Screen name="Connexion" component={Connexion} />
             <Stack.Screen name = "Admin" component={Admin}/>
             <Stack.Screen name = "CardReptile" component={CardReptiles}/>
