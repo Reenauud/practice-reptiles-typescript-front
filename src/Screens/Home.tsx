@@ -1,3 +1,17 @@
+<<<<<<< HEAD
+import { StyleSheet, Text, View, ImageBackground, Image, Button } from "react-native";
+import CarouselCardItem from "../Components/Carousel"
+import React from "react";
+import Header from "../Components/Header";
+
+export default function Home({ navigation  }:any) {
+  
+
+  const handlePayment = () => {
+    navigation.navigate("payment")
+  }
+
+=======
 import { StatusBar } from "expo-status-bar";
 import { Button, Icon, LinearProgress } from "@rneui/themed";
 import { StyleSheet, Text, View, ImageBackground, Image, SafeAreaView, Pressable } from "react-native";
@@ -40,6 +54,7 @@ export default function Home({ navigation }: any) {
     navigation.navigate("Reptiles")
   }
 
+>>>>>>> main
   return (
     <LinearGradient
       colors={['#006400', '#FFFFFF',]}
@@ -112,8 +127,15 @@ export default function Home({ navigation }: any) {
 
 
       </View>
+<<<<<<< HEAD
+      <Button onPress={handlePayment}
+      title="Pay"
+      />
+    </View>
+=======
     </LinearGradient>
 
+>>>>>>> main
   );
 }
 

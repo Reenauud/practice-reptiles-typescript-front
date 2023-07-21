@@ -1,4 +1,5 @@
-{
+import "dotenv/config";
+export default {
   "expo": {
     "expo": {
       "plugins": [
@@ -12,12 +13,9 @@
     "slug": "reptile-shop-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
@@ -25,12 +23,23 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        
       }
     },
     "web": {
        
-    }
+    },
+    "extra": {
+      stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
+    },
+    "plugins": [
+      [
+          "@stripe/stripe-react-native",
+          {
+              "merchantIdentifier": "ReptileShop",
+              "enableGooglePay": false
+          }
+      ]
+  ]
   }
 }
