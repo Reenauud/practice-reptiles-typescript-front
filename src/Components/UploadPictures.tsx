@@ -15,6 +15,8 @@ async function save(key: string, value: string) {
     console.log("ca passe dans la fonction save ?")
 }
 
+console.log("test4dev")
+
 // async function getVAlueFor(key: string) {
 //     let result = await SecureStore.getItemAsync(key)
 //     console.log("avant le try dans getValue ")
