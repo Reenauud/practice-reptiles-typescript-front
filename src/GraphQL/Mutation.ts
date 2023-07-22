@@ -90,10 +90,19 @@ mutation CreateFood($food: CreateFoodInput!) {
 `;
 
 
-
-const UPLOAD = gql`
+export const UPLOAD = gql`
 mutation ($file: UploadFileInput!) {
   createUploadFile(input: { data: { file: $file } }) {
     name
   }
 }`
+
+export const CREATE_PAYMENT_SESSION = gql`
+mutation CretePaymentSession($amount: String!) {
+    createPaymentSession(amount: $amount) {
+        customer
+        ephemeralKey
+        paymentIntent
+        publishableKey
+    }
+}`;

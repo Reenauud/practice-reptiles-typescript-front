@@ -1,4 +1,10 @@
 
+import { StyleSheet, Text, View, ImageBackground, Image, Button } from "react-native";
+import CarouselCardItem from "../Components/Carousel"
+import React from "react";
+import Header from "../Components/Header";
+import { StatusBar } from "expo-status-bar";
+import { Button, Icon, LinearProgress } from "@rneui/themed";
 import { StyleSheet, Text, View, ImageBackground, Image, SafeAreaView, Pressable } from "react-native";
 import SearchBar from "react-native-dynamic-search-bar";
 import Carrousel from "../Components/Carousel";
@@ -11,7 +17,6 @@ import terra from "../../assets/terra.jpg"
 import CarouselCardItem from "../Components/Carousel"
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { NavigationContainer } from '@react-navigation/native';
-import React from "react";
 import Panier from "./Panier";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -19,6 +24,10 @@ import { LinearGradient } from "expo-linear-gradient";
 
 
 export default function Home({ navigation }: any) {
+  
+    const handlePayment = () => {
+    navigation.navigate("payment")
+  }
 
 
   const GoToCoPage = () => {
@@ -108,7 +117,12 @@ export default function Home({ navigation }: any) {
 
 
       </View>
+      
+      <Button onPress={handlePayment}
+      title="Pay"
+      />
     </LinearGradient>
+
   );
 }
 
@@ -117,7 +131,6 @@ const styles = StyleSheet.create({
     flex: 1,
     // backgroundColor: "lightgreen",
     justifyContent: "space-between",
-
   },
 
   reptiles: {
@@ -211,9 +224,6 @@ const styles = StyleSheet.create({
     height:150,
     // height:"100%"
     borderRadius: 20
-
-
-
 
 
 

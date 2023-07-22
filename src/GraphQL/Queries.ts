@@ -10,7 +10,7 @@ export const GET_FOOD_LIST = gql`
     }
  }`;
 
- export const GET_ALL_USERS = gql`
+export const GET_ALL_USERS = gql`
  query GetAllUsers {
     getAllUsers {
         email
@@ -76,3 +76,4 @@ query GetOneReptile($getOneReptileId: Float!) {
     photoId
   }
 }`
+

@@ -27,6 +27,7 @@ const CarouselCards = () => {
     <View>
       <Carousel
         layout="default"
+        vertical={false}
         layoutCardOffset={9}
         ref={isCarousel}
         data={dataaa}
@@ -42,4 +43,4 @@ const CarouselCards = () => {
 }
 
 
-export default CarouselCards
+export default CarouselCards;

@@ -19,8 +19,6 @@ const CardReptiles = () => {
 
 export default CardReptiles
 
-
-
 const styles = StyleSheet.create({
     container: {
         flex: 0.4,
