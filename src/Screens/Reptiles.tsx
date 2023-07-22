@@ -1,5 +1,5 @@
-import React, { useState } from "react"
-import { View, Text, StyleSheet } from "react-native"
+import React, { useState, useEffect } from "react"
+import { View, Text, StyleSheet, ScrollView  } from "react-native"
 import { GET_ALL_REPTILES_BY_CATEGORY } from "../GraphQL/Queries"
 import { useQuery, useMutation } from "@apollo/client"
 import { useSelector } from "react-redux"
@@ -10,10 +10,25 @@ import { Cloudinary } from "@cloudinary/url-gen"
 import { Button } from "@rneui/themed"
 import { LinearGradient } from "expo-linear-gradient"
 import { TouchableOpacity } from "react-native-gesture-handler"
+import ModalReptiles from "../Components/ModalReptiles"
+import { Dispatch } from "@reduxjs/toolkit"
+import  {setReptileId}  from "../app/reptileIdSlice"
+import { setReptileI } from "../app/ReptileSlice"
+
 
 export default function Reptile() {
 
     const categoryName = useSelector((state: RootState) => state.categoryName)
+    const reptileId = useSelector((state: RootState) => state.reptileId)
+
+
+
+
+    const [clicked, setClicked] = useState(false)
+    const dispatch = useDispatch()
+
+
+    const [id, setId] = useState(0)
 
     const cld = new Cloudinary({
         cloud: {
@@ -23,54 +38,75 @@ export default function Reptile() {
 
     let name = categoryName.categoryName
 
+
+    // const onPressTouchable = (id : any) => {
+       
+    //     // dispatch(setReptileId(id))
+    //     alert("ca passe dans le pressable")
+
+    //     dispatch(setReptileId(id))
+
+
+    //     return (
+
+    //         reptileId
+
+            
+    //     )
+
+
+    
+
+
+
+
+
+
     const { loading, error, data } = useQuery(GET_ALL_REPTILES_BY_CATEGORY, { variables: { categoryName: name } });
 
-    const rept = data?.getAnimalsByCategory.map((rep: any) => {
+    const rept = data?.getAnimalsByCategory.map((rep: any, key: number) => {
         const myImage = cld.image(rep.photoId)
-
-        const onPressReptileInfo = () => {
-            return (
-
-                alert("ici fiche reptiles")
+        const id = rep.id
 
 
-            )
-        }
 
 
+
+
+        
 
         return (
-            <LinearGradient
-            colors={['#006400', '#FFFFFF',]}
-            style={styles.background}
-          >
-            <View style={{backgroundColor:"grey", flexDirection:"row", height:"25%", justifyContent:"center", alignItems:"center", borderRadius:30, marginTop:"15%"}}>
-                    
-                <View style={{flex:0.5, justifyContent:"center"}}>
-                    <Text>
-                        nom : {rep.name}
+     
+
+            <View style={{ flexDirection:"row", height:"14%", justifyContent:"space-between", alignItems:"center", borderRadius:30, marginTop:"15%", width:"90%"}}>
+                <View style={{flex:0.7, justifyContent:"center", height:"100%", alignItems:"center"}}>
+                    <Text style={{marginBottom:15}}>
+                        {rep.name}
                     </Text>
-                    <Text>
-                        description : {rep.description}
-                    </Text>
+                    <TouchableOpacity >
+
+<ModalReptiles id={id} />
+
+
+
+
+</TouchableOpacity>
+   
+           
                 </View>
                 <View>
 
-                    <View style={{justifyContent:"center", flex:1}}>
+                    <View style={{ flex:1}}>
                         <AdvancedImage cldImg={myImage} style={{ height: 150, width: 150, borderRadius:30 }}></AdvancedImage>
                     </View>
-                    <TouchableOpacity style={{ width:"50%"}}>
-                    <Button>
-                        +
-                    </Button>
-
-                    </TouchableOpacity>
+   
                
                  
                 </View>
 
             </View>
-            </LinearGradient>
+
+
 
         )
 
@@ -78,9 +114,22 @@ export default function Reptile() {
     )
     return (
 
+
         <View style={{ backgroundColor: "transparent", flex: 1, justifyContent: "center" }}>
-            {rept}
+                    <ScrollView>
+
+                      <LinearGradient
+                colors={['#006400', '#FFFFFF',]}
+                style={{flex:1, alignItems:"center"}}
+
+            >
+                            {rept}
+
+            </LinearGradient>
+            </ScrollView>
+
         </View>
+
     )
 }
 

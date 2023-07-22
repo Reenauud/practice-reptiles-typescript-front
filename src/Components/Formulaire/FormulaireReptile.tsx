@@ -84,7 +84,7 @@ export const FormulaireReptile = () => {
 
     }
     const result = useQuery(GET_ALL_CATEGORIES)
-        console.log("result ", result.data.data)
+        // console.log("result ", result.data.data)
 
     
 

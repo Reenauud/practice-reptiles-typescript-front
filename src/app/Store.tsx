@@ -4,6 +4,7 @@ import testSlice from "../app/ReptileSlice"
 import PictureSlice from "./PictureSlice";
 import CategorySlice from "./CategorySlice";
 import CategoryNameSlice from "./CategoryNameSlice";
+import reptileIdSlice from "./reptileIdSlice";
 
 export const store = configureStore({
     reducer:{
@@ -11,7 +12,8 @@ export const store = configureStore({
         reptileI: testSlice,
         photoId: PictureSlice,
         categoryId: CategorySlice,
-        categoryName: CategoryNameSlice
+        categoryName: CategoryNameSlice,
+        reptileId: reptileIdSlice
 
     }
 })
