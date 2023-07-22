@@ -1,17 +1,8 @@
-<<<<<<< HEAD
+
 import { StyleSheet, Text, View, ImageBackground, Image, Button } from "react-native";
 import CarouselCardItem from "../Components/Carousel"
 import React from "react";
 import Header from "../Components/Header";
-
-export default function Home({ navigation  }:any) {
-  
-
-  const handlePayment = () => {
-    navigation.navigate("payment")
-  }
-
-=======
 import { StatusBar } from "expo-status-bar";
 import { Button, Icon, LinearProgress } from "@rneui/themed";
 import { StyleSheet, Text, View, ImageBackground, Image, SafeAreaView, Pressable } from "react-native";
@@ -19,8 +10,6 @@ import SearchBar from "react-native-dynamic-search-bar";
 import Carrousel from "../Components/Carousel";
 import Menu from "../Components/Menu";
 import logo from "../../assets/logo.png"
-import { borderRadius, flexbox, height, positions, style, width } from "@mui/system";
-import { Flex } from "@react-native-material/core";
 import userIcon from "../../assets/user.png"
 import panier from "../../assets/panier.png"
 import iguan from "../../assets/iguan.jpg"
@@ -28,7 +17,6 @@ import terra from "../../assets/terra.jpg"
 import CarouselCardItem from "../Components/Carousel"
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { NavigationContainer } from '@react-navigation/native';
-import React, { useState } from "react";
 import Panier from "./Panier";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -36,6 +24,10 @@ import { LinearGradient } from "expo-linear-gradient";
 
 
 export default function Home({ navigation }: any) {
+  
+    const handlePayment = () => {
+    navigation.navigate("payment")
+  }
 
 
   const GoToCoPage = () => {
@@ -51,10 +43,9 @@ export default function Home({ navigation }: any) {
   }
 
   const goToReptile = () => {
-    navigation.navigate("Reptiles")
+    navigation.navigate("Categories")
   }
 
->>>>>>> main
   return (
     <LinearGradient
       colors={['#006400', '#FFFFFF',]}
@@ -94,15 +85,16 @@ export default function Home({ navigation }: any) {
 
           <View style={styles.containerReptile}>
 
-            <Pressable style={styles.reptiles} onPress={() => { goToReptile() }}>
+            <Pressable onPress={() => { goToReptile() }}>
               <Image
                 resizeMode="cover"
-                style={styles.reptileCategory}
+                style={styles.imagemenu}
                 source={iguan}
+                
               />
 
             </Pressable>
-            <Text style={styles.text}>REPTILES</Text>
+            <Text style={styles.text}>nos reptiles</Text>
 
 
 
@@ -110,13 +102,11 @@ export default function Home({ navigation }: any) {
 
             <Image
               resizeMode="cover"
-              style={styles.reptileCategory}
+              style={styles.imagemenu}
               source={terra}
             />
 
-            {/* <ImageBackground source={iguan} resizeMode={"cover"} style={{borderRadius:10}}></ImageBackground>
-      <Text> reptiles</Text> */}
-            <Text style={styles.text}>MATERIEL</Text>
+            <Text style={styles.text}>materiels</Text>
 
           </View>
 
@@ -127,15 +117,12 @@ export default function Home({ navigation }: any) {
 
 
       </View>
-<<<<<<< HEAD
+      
       <Button onPress={handlePayment}
       title="Pay"
       />
-    </View>
-=======
     </LinearGradient>
 
->>>>>>> main
   );
 }
 
@@ -152,6 +139,10 @@ const styles = StyleSheet.create({
     height: "100%",
   },
 
+  imagemenu:{
+    height:100, width:100, borderRadius:15
+  },
+
   image: {
     flex: 0,
     width: "100%",
@@ -160,13 +151,13 @@ const styles = StyleSheet.create({
     marginTop: "0%",
   },
 
-  test: {
-    flex: 1,
-    height: 10,
-    width: 10
+  // test: {
+  //   flex: 1,
+  //   height: 10,
+  //   width: 10
 
 
-  },
+  // },
 
   header: {
     backgroundColor: "black",
@@ -205,7 +196,7 @@ const styles = StyleSheet.create({
     height: 10,
     alignItems: "center",
     marginBottom: 50,
-    marginTop: 50
+    marginTop: 50,
 
 
   },
@@ -229,7 +220,8 @@ const styles = StyleSheet.create({
   reptileCategory: {
     flex: 1,
     // borderRadius:50,
-    width: "100%",
+    width: 150,
+    height:150,
     // height:"100%"
     borderRadius: 20
 
@@ -268,7 +260,8 @@ const styles = StyleSheet.create({
   containerReptile: {
     width: 180,
     flex: 1,
-    alignItems: "center"
+    alignItems: "center",
+    marginTop:"12%"
   },
 
   text: {
