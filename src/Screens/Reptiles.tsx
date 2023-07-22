@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { View, Text, StyleSheet  } from "react-native"
+import { View, Text, StyleSheet, ScrollView  } from "react-native"
 import { GET_ALL_REPTILES_BY_CATEGORY } from "../GraphQL/Queries"
 import { useQuery, useMutation } from "@apollo/client"
 import { useSelector } from "react-redux"
@@ -78,7 +78,7 @@ export default function Reptile() {
         return (
      
 
-            <View style={{ flexDirection:"row", height:"18%", justifyContent:"space-between", alignItems:"center", borderRadius:30, marginTop:"15%", width:"90%"}}>
+            <View style={{ flexDirection:"row", height:"14%", justifyContent:"space-between", alignItems:"center", borderRadius:30, marginTop:"15%", width:"90%"}}>
                 <View style={{flex:0.7, justifyContent:"center", height:"100%", alignItems:"center"}}>
                     <Text style={{marginBottom:15}}>
                         {rep.name}
@@ -114,7 +114,10 @@ export default function Reptile() {
     )
     return (
 
+
         <View style={{ backgroundColor: "transparent", flex: 1, justifyContent: "center" }}>
+                    <ScrollView>
+
                       <LinearGradient
                 colors={['#006400', '#FFFFFF',]}
                 style={{flex:1, alignItems:"center"}}
@@ -123,7 +126,10 @@ export default function Reptile() {
                             {rept}
 
             </LinearGradient>
+            </ScrollView>
+
         </View>
+
     )
 }
 

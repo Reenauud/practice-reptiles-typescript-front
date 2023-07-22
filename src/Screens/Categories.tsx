@@ -1,5 +1,5 @@
 import React, { useEffect } from "react"
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
+import { View, Text, StyleSheet, TouchableOpacity, FlatList } from "react-native"
 import { LinearGradient } from "expo-linear-gradient"
 import { useQuery } from "@apollo/client"
 import { GET_ALL_CATEGORIES } from "../GraphQL/Queries"
@@ -67,20 +67,36 @@ export default function Categories({navigation}: any) {
         
     }
 
-
     const rept = data?.getAllCategories.map((a: any) => {
         const myImage = cld.image(a.categoryImage)
+  
 
         return (
 
-            <View style={{ alignItems: "center", flex: 0.5 }}>
-                <View>
+            <View style={{marginTop:"5%"}}>
+                <View >
                     <TouchableOpacity onPress={() => {
                         OnImagePress(a.id, a.categoryName)
                     }}>
 
-                        <AdvancedImage cldImg={myImage} style={{ width: 100, height: 100 }} ></AdvancedImage>
-                        <Text>{a.categoryName}</Text>
+                        {/* <FlatList
+                        data={[
+                            {key: a.categoryName, image : myImage}
+                        ]}
+                        renderItem={({item}) => {
+                            return (
+                                <View style={{ alignItems:"center", marginBottom:"5%"}}>
+                                <Text>{item.key}</Text>
+                                <AdvancedImage cldImg={myImage} style={{width:100, height:100}}></AdvancedImage>
+                                </View>
+                            )
+                    }}
+                        /> */}
+
+                        <View style={{alignItems:"center"}}>
+                         <AdvancedImage cldImg={myImage} style={{ width: 100, height: 100, borderRadius:15 }} ></AdvancedImage>
+                        <Text>{a.categoryName}</Text> 
+                        </View>
 
 
                     </TouchableOpacity>
@@ -95,11 +111,12 @@ export default function Categories({navigation}: any) {
         <View style={styles.container} >
             <LinearGradient
                 colors={['#006400', '#FFFFFF',]}
-                style={styles.container}
+                style={{width:"100%", height:"100%", alignItems:"center", justifyContent:"center"}}
 
             >
-
+                <View style={{ flexWrap:"wrap", flexDirection:"row", width:"70%", justifyContent:"space-around"}}>
                 {rept}
+                </View>
 
 
             </LinearGradient>
@@ -112,11 +129,13 @@ export default function Categories({navigation}: any) {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: "lightgreen",
+        // flex: 1,
+        // backgroundColor: "lightgreen",
         justifyContent: "center",
-        alignContent: "center",
+        alignItems:"center",
+        // alignContent: "center",
         height: "100%",
+        // width:"100%",
     },
 
 })
