@@ -1,13 +1,7 @@
 import React, { Provider, useEffect, useState } from 'react';
 import { Button, TextInput, View, SafeAreaView } from 'react-native';
-import { Form, Formik } from 'formik';
-// import { useForm } from 'react-hook-form';
 import { CREATE_REPTILE } from "../../GraphQL/Mutation";
-import { create } from 'react-test-renderer';
 import { useMutation } from '@apollo/react-hooks';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-
-import * as SecureStore from 'expo-secure-store';
 
 export const FormulaireReptile = () => {
 
@@ -15,10 +9,6 @@ export const FormulaireReptile = () => {
     const [description, setDescription] = useState("")
     const [price, setPrice] = useState("")
     const [quantity, setQuantity] = useState("")
-
-    const [createReptile, setCreateReptile] = useState({})
-
-
     const [create, { loading, error }] = useMutation(CREATE_REPTILE)
 
 
@@ -29,17 +19,11 @@ export const FormulaireReptile = () => {
             price: parseInt(price, 10),
             quantity: parseInt(quantity, 10)
          };
- 
         create({
             variables: {reptile: newReptile},
         });
-
     }
-
     return (
-
-
-
         <SafeAreaView>
             <View style={{ flex: 0, width: "100%", alignItems: "center", }}>
 
@@ -49,32 +33,20 @@ export const FormulaireReptile = () => {
                     editable={true}
                     style={{ backgroundColor: "lightgrey", width: "50%", alignItems: "center", borderWidth: 1, marginBottom: 9 }}
                     value={description}
-
-
                 />
-
                 <TextInput
                     editable={true}
                     placeholder='name'
                     onChangeText={nom => setNom(nom)}
                     value={nom}
                     style={{ backgroundColor: "lightgrey", width: "50%", alignItems: "center", borderWidth: 1, marginBottom: 9 }}
-
                 />
-                {/* <TextInput
-                            placeholder='name'
-                            onChangeText={}
-                            style={{ backgroundColor: "lightgrey", width: "50%", alignItems: "center", borderWidth: 1, marginBottom: 9 }}
-
-                        /> */}
                 <TextInput
                     placeholder='price'
                     onChangeText={price => setPrice(price)}
                     value={price}
                     keyboardType='numeric'
                     style={{ backgroundColor: "lightgrey", width: "50%", alignItems: "center", borderWidth: 1, marginBottom: 9 }}
-
-
                 />
                 <TextInput
                     placeholder='quantity'
@@ -82,21 +54,13 @@ export const FormulaireReptile = () => {
                     value={quantity}
                     style={{ backgroundColor: "lightgrey", width: "50%", alignItems: "center", borderWidth: 1, marginBottom: 9 }}
                     keyboardType='numeric'
-
-
                 />
-
                 <Button
                     onPress={() => onSubmit()}
                     title="Envoyer"
                     color="#841584"
                 />
-
             </View>
-
-
         </SafeAreaView>
-
     )
-
 }

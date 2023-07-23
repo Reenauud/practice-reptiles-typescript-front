@@ -6,13 +6,17 @@ import { AdvancedImage } from 'cloudinary-react-native'
 export const SLIDER_WIDTH = Dimensions.get('window').width + 80
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7)
 
+type CarouselCardComponentProps = {
+  item: any;
+  index: number;
+}
+
+const CarouselCardItem = ({ item, index }: CarouselCardComponentProps) => {
 const cld = new Cloudinary({
   cloud: {
       cloudName: "ddnauhqyh"
   }
 })
-
-const CarouselCardItem = ( {item , index } ) => {
   const myImage = cld.image(item.imgUrl)
   return (
     <View style={styles.container} key={index}>
@@ -28,14 +32,8 @@ const CarouselCardItem = ( {item , index } ) => {
 
 const styles = StyleSheet.create({
   container: {
-    // borderRadius: 8,
-    // paddingBottom: 40,
-    // shadowColor: "#000",
     flexDirection:"row",
     alignItems:"center",
- 
-    // shadowOpacity: 0.29,
-    // shadowRadius: 4.65,
   },
   image: {
     width: 130,

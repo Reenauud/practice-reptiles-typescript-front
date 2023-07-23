@@ -15,31 +15,6 @@ export const CreateUserMutation = gql`
   }
 `;
 
-// export const CREATE_REPTILE = gql`
-// mutation CreateReptile($reptile: CreateReptileInput!) {
-//   createReptile(reptile: $reptile) {
-//     description
-//     name
-//     price
-//     quantity
-//   }
-// }
-// `;
-
-// export const CREATE_REPTILE = gql `
-// mutation CreateReptile($category: CreateCategoryInput!, $reptile: CreateReptileInput!) {
-//   createReptile(category: $category, reptile: $reptile) {
-//     name
-//     description
-//     price
-//     quantity
-//     category {
-//       categoryName
-//     }
-//   }
-// }
-// `
-
 export const CREATE_REPTILE = gql `
 mutation CreateReptile($categoryId: Float!, $reptile: CreateReptileInput!) {
   createReptile(categoryId: $categoryId, reptile: $reptile) {

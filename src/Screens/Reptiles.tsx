@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { View, Text, StyleSheet, ScrollView  } from "react-native"
 import { GET_ALL_REPTILES_BY_CATEGORY } from "../GraphQL/Queries"
-import { useQuery, useMutation } from "@apollo/client"
+import { useQuery } from "@apollo/client"
 import { useSelector } from "react-redux"
 import { RootState } from "../app/RootReducers"
 import { useDispatch } from "react-redux"
 import { AdvancedImage } from "cloudinary-react-native"
 import { Cloudinary } from "@cloudinary/url-gen"
-import { Button } from "@rneui/themed"
 import { LinearGradient } from "expo-linear-gradient"
 import { TouchableOpacity } from "react-native-gesture-handler"
 import ModalReptiles from "../Components/ModalReptiles"
@@ -20,14 +19,8 @@ export default function Reptile() {
 
     const categoryName = useSelector((state: RootState) => state.categoryName)
     const reptileId = useSelector((state: RootState) => state.reptileId)
-
-
-
-
     const [clicked, setClicked] = useState(false)
     const dispatch = useDispatch()
-
-
     const [id, setId] = useState(0)
 
     const cld = new Cloudinary({
@@ -36,31 +29,6 @@ export default function Reptile() {
         }
     })
 
-    let name = categoryName.categoryName
-
-
-    // const onPressTouchable = (id : any) => {
-       
-    //     // dispatch(setReptileId(id))
-    //     alert("ca passe dans le pressable")
-
-    //     dispatch(setReptileId(id))
-
-
-    //     return (
-
-    //         reptileId
-
-            
-    //     )
-
-
-    
-
-
-
-
-
 
     const { loading, error, data } = useQuery(GET_ALL_REPTILES_BY_CATEGORY, { variables: { categoryName: name } });
 
@@ -68,78 +36,45 @@ export default function Reptile() {
         const myImage = cld.image(rep.photoId)
         const id = rep.id
 
-
-
-
-
-
-        
-
         return (
      
-
             <View style={{ flexDirection:"row", height:"14%", justifyContent:"space-between", alignItems:"center", borderRadius:30, marginTop:"15%", width:"90%"}}>
                 <View style={{flex:0.7, justifyContent:"center", height:"100%", alignItems:"center"}}>
                     <Text style={{marginBottom:15}}>
                         {rep.name}
                     </Text>
-                    <TouchableOpacity >
-
-<ModalReptiles id={id} />
-
-
-
-
-</TouchableOpacity>
-   
-           
+                    <TouchableOpacity>
+                        <ModalReptiles id={id} />
+                    </TouchableOpacity>
                 </View>
                 <View>
-
                     <View style={{ flex:1}}>
                         <AdvancedImage cldImg={myImage} style={{ height: 150, width: 150, borderRadius:30 }}></AdvancedImage>
                     </View>
-   
-               
-                 
                 </View>
-
             </View>
-
-
-
         )
-
-    }
-    )
+    })
     return (
 
 
         <View style={{ backgroundColor: "transparent", flex: 1, justifyContent: "center" }}>
-                    <ScrollView>
-
-                      <LinearGradient
+            <ScrollView>
+                <LinearGradient
                 colors={['#006400', '#FFFFFF',]}
                 style={{flex:1, alignItems:"center"}}
-
             >
-                            {rept}
-
-            </LinearGradient>
+                    {rept}
+                </LinearGradient>
             </ScrollView>
-
         </View>
-
     )
 }
-
 
 const styles = StyleSheet.create({
     background: {
         flex: 1,
-        // backgroundColor: "lightgreen",
         height: 100,
         justifyContent: "space-between",
-
     }
 })

@@ -6,8 +6,6 @@ const CardReptiles = () => {
     return(
         <View style={styles.container}>
             <View style={styles.top}>
-                
-
             </View>
             <View style={styles.bottom}>
 

@@ -2,10 +2,6 @@ import React from "react"
 import { StyleSheet, View, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-
-
-
-
 export default function Header({ navigation }: any) {
 
     const onPress = () => {
@@ -13,7 +9,6 @@ export default function Header({ navigation }: any) {
     }
 
     return (
-
         <View style={styles.header}>
           <TouchableOpacity onPress={onPress} style={styles.touchable}>
             <Image source={require('../../assets/user.png')} resizeMode={"contain"} style={styles.userIcon} />
@@ -24,15 +19,9 @@ export default function Header({ navigation }: any) {
           <TouchableOpacity onPress={onPress} style={styles.touchable}>
             <Image source={require('../../assets/panier.png')} resizeMode={"contain"} style={styles.panier} />
           </TouchableOpacity>
-        
       </View>
-
     )
-
-
-
 }
-
 
 const styles = StyleSheet.create({
     image: {
@@ -68,7 +57,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         zIndex: 5,
       },
-
 });
 
 

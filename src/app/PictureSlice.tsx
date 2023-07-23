@@ -12,20 +12,5 @@ const pictureSlice = createSlice({
   }
 });
 
-// const nameSlice = createSlice({
-//   name: "name",
-//   initialState: {
-//     message: ""
-//   },
-//   reducers: {
-//     setName(state, action: PayloadAction<string>){
-//         state.message = action.payload
-//     }
-//   }
-// })
-
-
-
 export const {setPhotoId} = pictureSlice.actions
-// export const {setName} = nameSlice.actions
 export default pictureSlice.reducer

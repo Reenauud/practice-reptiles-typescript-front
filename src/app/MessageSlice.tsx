@@ -24,8 +24,6 @@ const nameSlice = createSlice({
   }
 })
 
-
-
 export const {setMessage} = messageSlice.actions
 export const {setName} = nameSlice.actions
 export default messageSlice.reducer
