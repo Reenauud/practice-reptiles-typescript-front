@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CardField, useStripe } from '@stripe/stripe-react-native';
+import { useStripe } from '@stripe/stripe-react-native';
 import { useMutation } from '@apollo/client';
 import { CREATE_PAYMENT_SESSION } from '../GraphQL/Mutation';
 import { ActivityIndicator, Alert, Button, Text, View } from 'react-native';

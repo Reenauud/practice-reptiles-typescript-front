@@ -27,26 +27,7 @@ export const FormulaireCategory = () => {
 
 
     const [category, setCategory] = useState("")
-    // const [imageId, setImageId] = useState("")
-
-    // async function getVAlueFor(key: string) {
-    //     let imageId = await SecureStore.getItemAsync(key)
-    //     console.log("avant le try dans getValue ")
-
-    //     try {
-    //         if (imageId) {
-    //             console.log('ca passe bien dans get Value =) cest nice ')
-    //             console.log("result normalement idPhoto dans localStorage", imageId)
-    //             setImageId(imageId)
-    //         }
-
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
-
-
-
+    
     const [create, { loading, error }] = useMutation(CREATE_CATEGORY)
 
 
@@ -60,35 +41,26 @@ export const FormulaireCategory = () => {
             variables: { category: newCategory }
         })
 
-
     }
 
     return (
         <SafeAreaView>
             <View style={{ flex: 0, width: "100%", alignItems: "center", }}>
-
                 <TextInput
                     placeholder='category'
                     onChangeText={newCategory => setCategory(newCategory)}
                     editable={true}
                     style={{ backgroundColor: "lightgrey", width: "50%", alignItems: "center", borderWidth: 1, marginBottom: 9 }}
                     value={category}
-
-
                 />
                 <Button
                     onPress={() => onSubmit()}
                     title="Envoyer"
                     color="#841584"
                 />
-
                 <UploadPictures />
-
                 {myImage ? <AdvancedImage cldImg={myImage} style={{ width: 200, height: 200 }}></AdvancedImage> : null}
-
             </View>
-
-
         </SafeAreaView>
 
     )

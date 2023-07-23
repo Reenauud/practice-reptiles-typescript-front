@@ -4,7 +4,12 @@ import { View, Text, StyleSheet, Dimensions, Image } from "react-native"
 export const SLIDER_WIDTH = Dimensions.get('window').width + 80
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7)
 
-const CarouselCardItem = ({ item, index }) => {
+type CarouselCardComponentProps = {
+  item: any;
+  index: number;
+}
+
+const CarouselCardItem = ({ item, index }: CarouselCardComponentProps) => {
   return (
     <View style={styles.container} key={index}>
       <Image
@@ -18,14 +23,8 @@ const CarouselCardItem = ({ item, index }) => {
 
 const styles = StyleSheet.create({
   container: {
-    // borderRadius: 8,
-    // paddingBottom: 40,
-    // shadowColor: "#000",
     flexDirection:"row",
     alignItems:"center",
- 
-    // shadowOpacity: 0.29,
-    // shadowRadius: 4.65,
   },
   image: {
     width: 130,

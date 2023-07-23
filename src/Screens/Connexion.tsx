@@ -6,29 +6,18 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React, { useState } from "react";
-import { GET_ALL_USERS } from "../GraphQL/Queries";
 import { GET_TOKEN } from "../GraphQL/Mutation"
-import { Button } from "@rneui/themed";
-import { useQuery, useMutation } from "@apollo/client";
-import { create } from "react-test-renderer";
+import { useMutation } from "@apollo/client";
 import * as SecureStore from 'expo-secure-store';
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../app/RootReducers";
 import { setMessage } from "../app/MessageSlice";
-import { useNavigationContainerRef } from "@react-navigation/native";
-import { setReptileI } from "../app/ReptileSlice";
 import { LinearGradient } from "expo-linear-gradient";
-
-import Home from '../Screens/Home'
-
 
 export default function Connexion({ navigation }: any) {
   const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>();
-  const [users, setUsers] = useState([]);
   const dispatch = useDispatch()
-  const { message } = useSelector((state: RootState) => state.message)
-
 
   const [getConnexion, { data, loading, error }] = useMutation(GET_TOKEN, {
 
@@ -60,7 +49,6 @@ export default function Connexion({ navigation }: any) {
 
         <View>
           <View style={styles.titleposition}>
-            {/* <Text style={styles.title}>Bienvenue</Text> */}
           </View>
           <View style={styles.viewInput}>
             <TextInput
@@ -107,7 +95,6 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
-    // backgroundColor: "lightgrey",
   },
   connectWindow: {
     flex: 1,

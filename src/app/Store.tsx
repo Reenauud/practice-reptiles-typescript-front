@@ -10,9 +10,6 @@ export const store = configureStore({
         reptileI: testSlice,
         photoId: PictureSlice,
         categoryId: CategorySlice
-
-
-
     }
 })
 

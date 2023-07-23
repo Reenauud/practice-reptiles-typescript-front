@@ -1,6 +1,5 @@
 import * as SecureStore from "expo-secure-store"
 import * as ImagePicker from "expo-image-picker"
-import { Cloudinary } from "@cloudinary/url-gen";
 import React from "react";
 import { useState } from "react";
 import { View } from "react-native";
@@ -8,27 +7,11 @@ import { Button } from "@rneui/themed";
 import { useSelector, useDispatch } from "react-redux";
 import {setPhotoId} from "../app/PictureSlice"
 import { RootState } from "../app/RootReducers";
-import { AdvancedImage } from "cloudinary-react-native";
 
 async function save(key: string, value: string) {
     await SecureStore.setItemAsync(key, value)
     console.log("ca passe dans la fonction save ?")
 }
-
-// async function getVAlueFor(key: string) {
-//     let result = await SecureStore.getItemAsync(key)
-//     console.log("avant le try dans getValue ")
-
-//     try {
-//         if (result) {
-//             console.log('ca passe bien dans get Value =) cest nice ')
-//             console.log("result normalement idPhoto dans localStorage", result)
-//         }
-
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
 
 export default function UploadPictures() {
 
@@ -56,10 +39,7 @@ export default function UploadPictures() {
             }
 
             cloudinaryUpload(picture)
-
-
         }
-
     }
 
     const cloudinaryUpload = async (image: any) => {
@@ -69,8 +49,6 @@ export default function UploadPictures() {
         data.append('cloud_name', 'ddnauhqyh')
 
         try {
-
-
         await fetch("https://api.cloudinary.com/v1_1/ddnauhqyh/upload", {
             method: 'post',
             body: data
@@ -84,19 +62,14 @@ export default function UploadPictures() {
                 console.log(value, key)
 
                 alert("upload image ok ")
-          
         } catch (error) {
-
             alert(error)          
         }
     }
 
-
-
     return (
         <View>
             <Button onPress={pickImage} title={"ajouté une image"}></Button>
-       
         </View>
     )
 

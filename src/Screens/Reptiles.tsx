@@ -1,15 +1,13 @@
-import React, { useEffect } from "react"
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
-import { LinearGradient } from "expo-linear-gradient"
-import { useQuery } from "@apollo/client"
-import { GET_ALL_CATEGORIES } from "../GraphQL/Queries"
-import { Cloudinary } from "@cloudinary/url-gen"
-import { AdvancedImage } from "cloudinary-react-native"
-import { TouchableHighlight } from "react-native-gesture-handler"
-import { useSelector } from "react-redux"
-import { RootState } from "../app/RootReducers"
-import { useDispatch } from "react-redux"
-import { setCategoryId } from "../app/CategorySlice"
+import React from "react";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+import { useQuery } from "@apollo/client";
+import { GET_ALL_CATEGORIES } from "../GraphQL/Queries";
+import { Cloudinary } from "@cloudinary/url-gen";
+import { AdvancedImage } from "cloudinary-react-native";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../app/RootReducers";
+import { setCategoryId } from "../app/CategorySlice";
 
 
 export default function Reptiles() {
@@ -32,25 +30,7 @@ export default function Reptiles() {
         }
     })
 
-    // const reptilesInfo = () => {
-
-    //     if(data){
-
-    //         data.getAllCategory.map((a: any)=> {
-    //             return(
-    //                     <Text>{a.categoryName}</Text>
-
-    //             )
-    //         })
-
-    //     }
-
-    // }
-
     const OnImagePress = (id: number) => {
-
-
-
         return (
             alert(id),
             dispatch(setCategoryId(id)
@@ -58,7 +38,6 @@ export default function Reptiles() {
             )
         )
     }
-
 
     const rept = data?.getAllCategory.map((a: any) => {
         const myImage = cld.image(a.categoryImage)
@@ -70,17 +49,12 @@ export default function Reptiles() {
                     <TouchableOpacity onPress={() => {
                         OnImagePress(a.id)
                     }}>
-
                         <AdvancedImage cldImg={myImage} style={{ width: 100, height: 100 }} ></AdvancedImage>
                         <Text>{a.categoryName}</Text>
-
-
                     </TouchableOpacity>
                 </View>
-
             </View>
         )
-
     })
 
     return (
@@ -90,15 +64,9 @@ export default function Reptiles() {
                 style={styles.container}
 
             >
-
                 {rept}
-
-
             </LinearGradient>
         </View>
-
-
-
     )
 }
 

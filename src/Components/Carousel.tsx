@@ -18,13 +18,10 @@ const CarouselCards = () => {
         renderItem={CarouselCardItem}
         sliderWidth={SLIDER_WIDTH}
         itemWidth={ITEM_WIDTH}
-        // inactiveSlideShift={200}
-        // useScrollView={true}
         autoplay={true}
       />
     </View>
   )
 }
-
 
 export default CarouselCards;

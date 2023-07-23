@@ -1,11 +1,9 @@
-
-import React, { useState } from "react"
-import { Button } from "@rneui/themed"
-import { View, Text, StyleSheet } from "react-native"
-import { FormulaireReptile } from "../Components/Formulaire/FormulaireReptile"
-import CardReptiles from "../Components/CardReptiles"
-import { FormulaireCategory } from "../Components/Formulaire/FormulaireCategory"
-import { FormulaireFood } from "../Components/Formulaire/FormulaireFood"
+import React, { useState } from "react";
+import { Button } from "@rneui/themed";
+import { View, StyleSheet } from "react-native";
+import { FormulaireReptile } from "../Components/Formulaire/FormulaireReptile";
+import { FormulaireCategory } from "../Components/Formulaire/FormulaireCategory";
+import { FormulaireFood } from "../Components/Formulaire/FormulaireFood";
 
 export default function Admin() {
     const [formReptile, setFormReptile] = useState(false)
@@ -28,7 +26,6 @@ export default function Admin() {
     }
 
     return (
-
         <View style={styles.container}>
             <Button onPress={() => { formReptileIsVisible() }}>
                 ajouté un reptile
@@ -48,10 +45,7 @@ export default function Admin() {
             </Button>
         </View>
     )
-
-
 }
-
 
 const styles = StyleSheet.create({
     button: {
@@ -59,14 +53,11 @@ const styles = StyleSheet.create({
         backgroundColor: "lightgreen",
         justifyContent: "space-between",
         height: 10
-
-
     },
 
     container: {
         flex: 1,
-        marginTop: 50
-        // width: "100%",
+        marginTop: 50,
     },
 
     ajoutReptileView: {

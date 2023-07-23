@@ -1,5 +1,4 @@
 
-import {terra} from "../../assets/terra.jpg"
 
 export const data = [
     {
@@ -11,10 +10,5 @@ export const data = [
       title: "snakes",
       body: "Aenean ut eros et nisl sagittis vestibulum. Donec posuere vulputate arcu. Proin faucibus arcu quis ante. Curabitur at lacus ac velit ornare lobortis. ",
       imgUrl: "assets/user.png",
-    },
-    {
-      title: "terra",
-      body: "Phasellus ullamcorper ipsum rutrum nunc. Nullam quis ante. Etiam ultricies nisi vel augue. Aenean tellus metus, bibendum sed, posuere ac, mattis non, nunc.",
-      imgUrl: terra,
     },
   ];
