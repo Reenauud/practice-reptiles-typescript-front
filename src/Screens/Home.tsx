@@ -19,7 +19,7 @@ export default function Home({ navigation }: any) {
   }
 
   const goToReptile = () => {
-    navigation.navigate("Reptiles")
+    navigation.navigate("Categories")
   }
 
   return (
@@ -81,20 +81,16 @@ const styles = StyleSheet.create({
     height: "100%",
   },
 
+  imagemenu:{
+    height:100, width:100, borderRadius:15
+  },
+
   image: {
     flex: 0,
     width: "100%",
     height: "100%",
     marginRight: "2%",
     marginTop: "0%",
-  },
-
-  test: {
-    flex: 1,
-    height: 10,
-    width: 10
-
-
   },
 
   header: {
@@ -144,7 +140,8 @@ const styles = StyleSheet.create({
 
   reptileCategory: {
     flex: 1,
-    width: "100%",
+    width: 150,
+    height:150,
     borderRadius: 20
   },
 
@@ -177,7 +174,8 @@ const styles = StyleSheet.create({
   containerReptile: {
     width: 180,
     flex: 1,
-    alignItems: "center"
+    alignItems: "center",
+    marginTop:"12%"
   },
 
   text: {

@@ -38,7 +38,7 @@ export const FormulaireCategory = () => {
         };
 
         create({
-            variables: { category: newCategory }
+            variables: {"categoryImage": PhotoId.photoId,"categoryName": category}
         })
 
     }

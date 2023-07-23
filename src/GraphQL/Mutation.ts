@@ -35,15 +35,24 @@ mutation CreateFamily($family: CreateFamilyInput!) {
 }
 `;
 
-export const CREATE_CATEGORY = gql `
-mutation CreateCategory($category: CreateCategoryInput!) {
-  createCategory(category: $category) {
+// export const CREATE_CATEGORY = gql `
+// mutation CreateCategory($category: CreateCategoryInput!) {
+//   createCategory(category: $category) {
+//     id
+//     categoryImage
+//     categoryName
+//   }
+// }
+// `;
+
+export const CREATE_CATEGORY = gql`
+mutation CreateCategory($categoryImage: String!, $categoryName: String!) {
+  createCategory(categoryImage: $categoryImage, categoryName: $categoryName) {
     id
-    categoryImage
     categoryName
+    categoryImage
   }
-}
-`;
+}`
 
 export const CREATE_FOOD = gql`
 mutation CreateFood($food: CreateFoodInput!) {

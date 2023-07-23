@@ -18,7 +18,8 @@ import PaymentScreen from "./Screens/PaymentScreen";
 
 const { manifest } = Constants;
 import Panier from "./Screens/Panier";
-import Reptiles from "./Screens/Reptiles";
+import Categories from "./Screens/Categories";
+import Reptile from "./Screens/Reptiles";
 
 const Stack = createNativeStackNavigator();
 
@@ -42,8 +43,9 @@ export default function App() {
             <Stack.Screen name="Food" component={Food} />
             <Stack.Screen name="News" component={News} />
             <Stack.Screen name="Panier" component={Panier}/>
-            <Stack.Screen name="Reptiles" component={Reptiles}/>
+            <Stack.Screen name="Categories" component={Categories}/>
             <Stack.Screen name="Connexion" component={Connexion} />
+            <Stack.Screen name="Reptiles" component={Reptile} /> 
             <Stack.Screen name = "Admin" component={Admin}/>
             <Stack.Screen name = "CardReptile" component={CardReptiles}/>
             <Stack.Screen name = "payment" component={PaymentScreen}/>
