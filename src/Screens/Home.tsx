@@ -1,69 +1,51 @@
 import React from "react";
-import { StyleSheet, Text, View, ImageBackground, Image, Pressable } from "react-native";
-import CarouselCardItem from "../Components/Carousel";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { StyleSheet, Text, View, Image, ScrollView, Button } from "react-native";
+import Carousel from "../Components/Carousel";
 import { LinearGradient } from "expo-linear-gradient";
 
-
 export default function Home({ navigation }: any) {
-  const GoToCoPage = () => {
-    return (
-      navigation.navigate("Connexion")
-    )
-  }
-
-  const GoToPanier = () => {
-    return (
-      navigation.navigate("Panier")
-    )
-  }
-
-  const goToReptile = () => {
-    navigation.navigate("Categories")
-  }
-
+  
   return (
     <LinearGradient
       colors={['#006400', '#FFFFFF',]}
       style={styles.background}
     >
-      <View style={styles.background}>
-        <View style={styles.header}>
-          <TouchableOpacity   >
-            <Pressable onPress={() => { GoToCoPage() }} style={styles.touchable} >
-              <Image source={require('./img/user.png')} resizeMode={"contain"} style={styles.userIcon} />
-            </Pressable>
-          </TouchableOpacity><View />
-          <View style={styles.containerLogo} >
-            <ImageBackground source={require('./img/logo.png')} resizeMode={"cover"} style={styles.image}></ImageBackground>
-          </View>
-          <Pressable onPress={() => { GoToPanier() }} style={styles.touchableb} >
-            <Image source={require('./img/panier.png')} resizeMode={"contain"} style={styles.panier}></Image>
-          </Pressable>
-        </View>
         <View style={styles.carousel}>
-          <Text>nos nouveauté</Text>
-          <CarouselCardItem />
+          <Text style={styles.homeTitle}>Nos nouveautés</Text>
+          <Carousel />
         </View>
-        <View style={styles.menu}>
-          <View style={styles.containerReptile}>
-            <Pressable style={styles.reptiles} onPress={() => { goToReptile() }}>
-              <Image
-                resizeMode="cover"
-                style={styles.reptileCategory}
-                source={require('./img/iguan.jpg')}
-              />
-            </Pressable>
-            <Text style={styles.text}>REPTILES</Text>
-            <Image
-              resizeMode="cover"
-              style={styles.reptileCategory}
-              source={require('./img/terra.jpg')}
-            />
-            <Text style={styles.text}>MATERIEL</Text>
+        <ScrollView style={styles.menu}>
+          <View style={styles.welcomeTextContainer}>
+            <Text style={styles.title}>Bienvenue sur votre application Reptile Shop !</Text>
+            <Text style={{fontSize: 18, textAlign: "justify"}}>Consultez nos offres et nos promotions régulières ou recevez des notifications concernant vos articles favoris.</Text>
           </View>
-        </View>
-      </View>
+          <View style={styles.offersContainer}>
+            <Text style={styles.homeTitle}>Nos incontournables</Text>
+            <View style={styles.offerImgContainer}>
+              <Image source={require('./img/iguan.jpg')} style={styles.img} />
+              <View style={styles.absoluteBtnContainer}>
+                <Button
+                color="darkgreen"
+                title="Voir"
+                />
+              </View>
+              
+            </View>
+          </View>
+          <View style={styles.offersContainer}>
+            <Text style={styles.homeTitle}>Nos Promotions</Text>
+            <View style={styles.offerImgContainer}>
+              <Image source={require('./img/discount.jpg')} style={styles.img} />
+              <View style={styles.absoluteBtnContainer}>
+                <Button
+                color="darkgreen"
+                title="Voir"
+                />
+              </View>
+              
+            </View>
+          </View>
+        </ScrollView>
     </LinearGradient>
 
   );
@@ -72,61 +54,48 @@ export default function Home({ navigation }: any) {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    justifyContent: "space-between",
   },
 
-  reptiles: {
-    flex: 1,
-    width: "100%",
-    height: "100%",
+  homeTitle: {
+    fontSize: 20,
+    fontStyle: "italic",
+    marginVertical: 5,
   },
 
-  imagemenu:{
-    height:100, width:100, borderRadius:15
-  },
-
-  image: {
-    flex: 0,
-    width: "100%",
-    height: "100%",
-    marginRight: "2%",
-    marginTop: "0%",
-  },
-
-  header: {
-    backgroundColor: "black",
-    height: "17%",
-    flex: 1,
-    alignItems: "flex-end",
-    flexDirection: "row"
-  },
-
-  userIcon: {
-    flex: 1,
-    width: 100,
-    height: 40,
-    position: "absolute",
-    top: 20,
-    left: 0,
-  },
-
-
-  panier: {
-    width: "100%",
-    height: 50,
-
-    position: "relative",
-    flex: 0.5,
-    marginBottom: 35,
-    justifyContent: "flex-start"
-
-  },
   menu: {
-    flex: 3,
-    height: 10,
+    flex: 1,
+    width: "100%",
+  },
+
+  welcomeTextContainer: {
+    height: 150,
+    paddingHorizontal: 30,
+  },
+
+  title: {
+    fontSize: 20,
+    textAlign: "center",
+  },
+
+  offersContainer: {
+    height: 300,
+    flex: 1,
+    justifyContent: "center",
     alignItems: "center",
-    marginBottom: 50,
-    marginTop: 50
+    width: "100%",
+  },
+
+  offerImgContainer: {
+    height: 200,
+    width: 300,
+    position: "relative",
+  },
+
+  absoluteBtnContainer: {
+    position: "absolute",
+    width: 200,
+    bottom: 10,
+    right: 50,
   },
 
   carousel: {
@@ -138,11 +107,10 @@ const styles = StyleSheet.create({
     zIndex: 0,
   },
 
-  reptileCategory: {
-    flex: 1,
-    width: 150,
-    height:150,
-    borderRadius: 20
+  img: {
+    height: "100%",
+    width: "100%",
+    borderRadius: 10,
   },
 
   containerLogo: {
@@ -150,40 +118,6 @@ const styles = StyleSheet.create({
     height: "100%",
     flex: 1,
   },
-
-  touchable: {
-    width: 80,
-    height: 100,
-    justifyContent: "center",
-    alignContent: "center",
-    alignItems: "center",
-    zIndex: 1,
-
-  },
-
-  touchableb: {
-    justifyContent: "flex-end",
-    alignContent: "center",
-    alignItems: "center",
-    zIndex: 1,
-    height: "100%",
-    width: "25%"
-
-  },
-
-  containerReptile: {
-    width: 180,
-    flex: 1,
-    alignItems: "center",
-    marginTop:"12%"
-  },
-
-  text: {
-    marginTop: 10,
-    marginBottom: 40,
-    fontSize: 17
-
-  }
 
 });
 

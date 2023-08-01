@@ -6,6 +6,7 @@ import PictureSlice from "./PictureSlice";
 import CategorySlice from "./CategorySlice";
 import CategoryNameSlice from "./CategoryNameSlice";
 import reptileIdSlice from "./reptileIdSlice";
+import OrderReducer from "./OrderSlice";
 
 const rootReducer = combineReducers({
     message: MessageSlice,
@@ -13,8 +14,8 @@ const rootReducer = combineReducers({
     photoId: PictureSlice,
     categoryId: CategorySlice,
     categoryName: CategoryNameSlice,
-    reptileId : reptileIdSlice
-
+    reptileId : reptileIdSlice,
+    order: OrderReducer,
     
 })
 

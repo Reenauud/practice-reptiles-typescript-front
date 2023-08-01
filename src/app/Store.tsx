@@ -5,6 +5,7 @@ import PictureSlice from "./PictureSlice";
 import CategorySlice from "./CategorySlice";
 import CategoryNameSlice from "./CategoryNameSlice";
 import reptileIdSlice from "./reptileIdSlice";
+import OrderReducer from "./OrderSlice";
 
 export const store = configureStore({
     reducer:{
@@ -13,8 +14,8 @@ export const store = configureStore({
         photoId: PictureSlice,
         categoryId: CategorySlice,
         categoryName: CategoryNameSlice,
-        reptileId: reptileIdSlice
-
+        reptileId: reptileIdSlice,
+        order: OrderReducer,
     }
 })
 

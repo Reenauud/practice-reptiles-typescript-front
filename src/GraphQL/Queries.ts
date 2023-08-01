@@ -1,15 +1,5 @@
 import { gql } from "@apollo/client";
 
-export const GET_FOOD_LIST = gql`
- query GetFoodList {
-    getFoodList {
-        id
-        foodName
-        foodPrice
-        foodCategory
-    }
- }`;
-
 export const GET_ALL_USERS = gql`
  query GetAllUsers {
     getAllUsers {
@@ -29,7 +19,7 @@ export const GET_ALL_REPTILES = gql`
 query GetAllReptiles {
   getAllReptiles {
     name
-    photoId
+    animalPicture
   }
 }`
 
@@ -44,7 +34,6 @@ query GetCategory($categoryName: String!) {
 `
 
 export const GET_ALL_CATEGORIES = gql `
-
 query GetAllCategories {
   getAllCategories {
     id
@@ -77,3 +66,46 @@ query GetOneReptile($getOneReptileId: Float!) {
   }
 }`
 
+export const GET_ALL_ANIMALS = gql`
+query GetAllReptiles {
+  getAllReptiles {
+      id
+      name
+      description
+      animalPicture
+      quantity
+      price
+  }
+}`
+
+export const GET_ALL_ANIMALS_IDS = gql`
+query GetAllIds {
+  getAllReptiles {
+    id
+    name
+  }
+}
+`;
+
+export const GET_ALL_EQUIPMENTS = gql`
+query GetAllEquipments {
+  getAllEquipments {
+    id
+    equipmentName
+    equipmentDescription
+    equipmentPrice
+    equipmentDetails
+    equipmentPicture
+  }
+}`
+
+export const GET_FOOD_LIST = gql`
+query GetFoodList {
+    getFoodList {
+        id
+        foodName
+        foodPrice
+        foodCategory
+        foodPicture
+      }
+  }`;

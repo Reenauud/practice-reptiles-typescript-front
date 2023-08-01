@@ -69,7 +69,7 @@ export default function UploadPictures() {
 
     return (
         <View>
-            <Button onPress={pickImage} title={"ajouté une image"}></Button>
+            <Button onPress={pickImage} title={"Ajouter une image"}></Button>
         </View>
     )
 

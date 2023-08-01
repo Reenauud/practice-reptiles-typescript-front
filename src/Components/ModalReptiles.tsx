@@ -1,8 +1,6 @@
 import { Modal, View, Text, StyleSheet, Pressable, Alert } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Button, Image } from "@rneui/themed";
-import user from "../../assets/user.png"
-import { TERMINATORLESS_TYPES } from "@babel/types";
 import { useSelector } from "react-redux";
 import { RootState } from "../app/RootReducers";
 import { useQuery } from "@apollo/client";

@@ -53,12 +53,12 @@ export const FormulaireCategory = () => {
                     style={{ backgroundColor: "lightgrey", width: "50%", alignItems: "center", borderWidth: 1, marginBottom: 9 }}
                     value={category}
                 />
+                <UploadPictures />
                 <Button
                     onPress={() => onSubmit()}
                     title="Envoyer"
                     color="#841584"
                 />
-                <UploadPictures />
                 {myImage ? <AdvancedImage cldImg={myImage} style={{ width: 200, height: 200 }}></AdvancedImage> : null}
             </View>
         </SafeAreaView>

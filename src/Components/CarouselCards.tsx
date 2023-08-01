@@ -3,8 +3,8 @@ import { View, Text, StyleSheet, Dimensions, Image } from "react-native"
 import { Cloudinary } from '@cloudinary/url-gen'
 import { AdvancedImage } from 'cloudinary-react-native'
 
-export const SLIDER_WIDTH = Dimensions.get('window').width + 80
-export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7)
+export const SLIDER_WIDTH = Dimensions.get('window').width
+export const ITEM_WIDTH = Math.round(SLIDER_WIDTH)
 
 type CarouselCardComponentProps = {
   item: any;
@@ -17,15 +17,11 @@ const cld = new Cloudinary({
       cloudName: "ddnauhqyh"
   }
 })
-  const myImage = cld.image(item.imgUrl)
+  const myImage = cld.image(item.animalPicture)
   return (
     <View style={styles.container} key={index}>
       <AdvancedImage cldImg={myImage} style={styles.image}></AdvancedImage>
-      <Image
-        source={{ uri: item.imgUrl }}
-        
-      />
-      <Text style={styles.header}>{item.title}</Text>
+      <Text style={styles.imageTitle}>{item.name}</Text>
     </View>
   )
 }
@@ -36,18 +32,18 @@ const styles = StyleSheet.create({
     alignItems:"center",
   },
   image: {
-    width: 130,
+    width: 300,
     height: 130,
-    borderRadius:80,
     zIndex:10
 
   },
-  header: {
-    color: "#222",
-    fontSize: 28,
+  imageTitle: {
+    backgroundColor: "rgba(255, 255, 255, 0.8)",
+    color: "darkgreen",
+    fontSize: 20,
     fontWeight: "bold",
-    paddingLeft: 20,
-    paddingTop: 20
+    position: "absolute",
+    bottom: 0,
   },
   body: {
     color: "#222",

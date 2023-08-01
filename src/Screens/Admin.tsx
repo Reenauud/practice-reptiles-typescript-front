@@ -1,49 +1,47 @@
 import React, { useState } from "react";
 import { Button } from "@rneui/themed";
-import { View, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 import { FormulaireReptile } from "../Components/Formulaire/FormulaireReptile";
 import { FormulaireCategory } from "../Components/Formulaire/FormulaireCategory";
 import { FormulaireFood } from "../Components/Formulaire/FormulaireFood";
+import { EquipmentsForm } from "../Components/Formulaire/EquipmentsForm";
+import { UpkeepForm } from "../Components/Formulaire/UpkeepForm";
+import { GET_ALL_ANIMALS_IDS } from "../GraphQL/Queries";
+import { useQuery } from "@apollo/client";
+import { AnimalsIds } from "../types/datatypes";
 
 export default function Admin() {
-    const [formReptile, setFormReptile] = useState(false)
-    const [formCategory, setFormCategory] = useState(false)
-    const [formFood, setFormFood] = useState(false)
-
-    const formReptileIsVisible = () => {
-        setFormReptile(!formReptile)
-
-    }
-
-    const formCategoryIsVisible = () => {
-        setFormCategory(!formCategory)
-
-    }
-
-    const formFoodIsVisible = () => {
-        setFormFood(!formFood)
-
-    }
+    const [formToShow, setFormToShow] = useState<number>(0);
+    const [animalsIds, setAnimalsIds] = useState<AnimalsIds[]>([]);
+    const { loading, error } = useQuery(GET_ALL_ANIMALS_IDS, {
+        onCompleted: (data) => {
+            setAnimalsIds(data?.getAllReptiles);
+        }
+    })
 
     return (
-        <View style={styles.container}>
-            <Button onPress={() => { formReptileIsVisible() }}>
-                ajouté un reptile
+        <ScrollView style={styles.container}>
+            <Button onPress={() => { setFormToShow(1)}}>
+                Ajouter un reptile
             </Button >
-            {formReptile ?<FormulaireReptile/>: null}
-            <Button onPress={()=> {formCategoryIsVisible()}}>
-                ajouté une catégorie de reptile
+            {formToShow === 1 ? <FormulaireReptile/> : null}
+            <Button onPress={()=> { setFormToShow(2) }}>
+                Ajouter une catégorie de reptile
             </Button>
-            {formCategory ? <FormulaireCategory/> : null}
-            <Button onPress={()=> {formFoodIsVisible()}}>
-                ajouté de la nourriture pour reptile
+            {formToShow === 2 ? <FormulaireCategory/> : null}
+            <Button onPress={()=> { setFormToShow(3) }}>
+                Ajouter de la nourriture
             </Button>
-            {formFood ? <FormulaireFood/> : null}
-
-            <Button >
-                ajouté de la nourriture pour proie
+            {formToShow === 3 ? <FormulaireFood/> : null}
+            <Button onPress={()=> { setFormToShow(4) }}>
+                Ajouter du matériel
             </Button>
-        </View>
+            {formToShow === 4 ? <EquipmentsForm /> : null}
+            <Button onPress={()=> { setFormToShow(5) }}>
+                Ajouter une fiche d'entretien
+            </Button>
+            {formToShow === 5 ? <UpkeepForm animalsIds={animalsIds} /> : null}
+        </ScrollView>
     )
 }
 

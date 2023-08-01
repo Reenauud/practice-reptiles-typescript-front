@@ -12,7 +12,6 @@ export default function Food() {
       setFoodList([...data.getFoodList]);
     }
   });
-  console.log(foodList);
   if (loading) return <ActivityIndicator />;
   if (error) return <Text>{error.message}</Text>
   return (
