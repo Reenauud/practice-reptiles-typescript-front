@@ -1,27 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { StyleSheet, View, Text, TouchableOpacity, Image, FlatList, ActivityIndicator } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, View, Text, FlatList, ActivityIndicator } from "react-native";
 import { GET_ALL_EQUIPMENTS } from "../GraphQL/Queries";
 import { useQuery } from "@apollo/client";
 import { EquipmentForSale } from "../types/datatypes";
 import EquipmentCard from "../Components/EquipmentCard";
-import { sharedStyles } from "../sharedStyles/sharedStyles";
 import { EquipmentsNavigationProp } from "../Router/types";
-import { useSelector } from "react-redux";
-import { RootState } from "../app/RootReducers";
-import { Badge } from "@rneui/themed";
 
 export default function Equipments({ navigation }: EquipmentsNavigationProp) {
   const [equipments, setEquipments] = useState<EquipmentForSale[]>([]);
-  const [numberOfArticles, setNumberOfArticles] = useState<number>(0);
-  const order = useSelector((state: RootState) => state.order);
-
-    useEffect(() => {
-        const getNumberOfArticles = () => {
-            const numberInCart = order.cart.reduce((acc, curr) => acc += curr.quantity, 0);
-            setNumberOfArticles(numberInCart);
-        }
-        getNumberOfArticles();
-    }, [order]);
 
   const { loading, error } = useQuery<EquipmentForSale[]>(GET_ALL_EQUIPMENTS, {
     onCompleted: (data: any) => {

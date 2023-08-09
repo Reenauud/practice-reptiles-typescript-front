@@ -10,7 +10,6 @@ import { RootStackParamList } from './types';
 import { User } from '../Screens/User';
 import { Checkout } from '../Screens/Checkout';
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { Badge } from '@rneui/themed';
 import { useSelector } from 'react-redux';
 import { RootState } from '../app/RootReducers';
 
@@ -37,18 +36,18 @@ export default function Router() {
             publishableKey={manifest?.extra?.stripePublishableKey}
             >
                 <Tab.Navigator
-                initialRouteName="Home"
+                initialRouteName="Accueil"
                 screenOptions={({ route }) => ({
                     tabBarIcon: ({ focused, color, size }) => {
                       let iconName;
           
-                      if (route.name === "Home") {
+                      if (route.name === "Accueil") {
                         iconName = focused ? "home" : "home-outline";
-                      } else if (route.name === "Shop") {
+                      } else if (route.name === "Produits") {
                         iconName = focused ? "search" : "search-outline";
-                      } else if (route.name === "User") {
+                      } else if (route.name === "Compte") {
                         iconName = focused ? "person" : "person-outline";
-                      } else if (route.name === "Checkout") {
+                      } else if (route.name === "Achats") {
                         iconName = focused ? "cart" : "cart-outline";
                       }
                       return <Ionicons name={iconName} size={size} color={color} />;
@@ -58,14 +57,14 @@ export default function Router() {
                     tabBarInactiveTintColor: "gray",
                   })}
                 >
-                    <Tab.Screen name="Home" component={Home} />
-                    <Tab.Screen name="Shop" component={Shop} />
-                    <Tab.Screen name="User" component={User} />
+                    <Tab.Screen name="Accueil" component={Home} />
+                    <Tab.Screen name="Produits" component={Shop} />
+                    <Tab.Screen name="Compte" component={User} />
                     <Tab.Screen
                     options={{
                         tabBarBadge: numberOfArticles !== 0 ? numberOfArticles : undefined
                     }}
-                    name="Checkout" component={Checkout} />
+                    name="Achats" component={Checkout} />
                 </Tab.Navigator>
             </StripeProvider>
         </NavigationContainer>

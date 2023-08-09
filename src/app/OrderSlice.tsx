@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-type ArticleOrder = {
+export type ArticleOrder = {
     picture: string;
     name: string;
     quantity: number;

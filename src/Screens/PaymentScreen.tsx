@@ -3,8 +3,11 @@ import { useStripe } from '@stripe/stripe-react-native';
 import { useMutation } from '@apollo/client';
 import { CREATE_PAYMENT_SESSION } from '../GraphQL/Mutation';
 import { ActivityIndicator, Alert, Button, Text, View } from 'react-native';
+import { useSelector } from 'react-redux';
+import { RootState } from '../app/RootReducers';
 
 export default function PaymentScreen() {
+  const order = useSelector((state: RootState) => state.order);
   const { initPaymentSheet, presentPaymentSheet } = useStripe();
   const [loading, setLoading] = useState(false);
   
@@ -15,6 +18,7 @@ export default function PaymentScreen() {
   const [createPayment, { error: createPaymentSessionError, loading: createPaymentSessionLoading }] = useMutation(CREATE_PAYMENT_SESSION, {
     onCompleted: (data) => {
       console.log("stripe", data.createPaymentSession);
+      //PaymentConfiguration.init(data.createPaymentSession.publishableKey);
     }
   })
   if (createPaymentSessionLoading) return <ActivityIndicator />
@@ -23,7 +27,7 @@ export default function PaymentScreen() {
   const initializePaymentSheet = async () => {
     const result = await createPayment({
       variables: {
-        amount: "1000"
+        amount: order.totalAmount,
       },
     });
     const { customer, ephemeralKey, paymentIntent } = result.data.createPaymentSession;

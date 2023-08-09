@@ -10,12 +10,12 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 export function Shop() {
     return (
       <Stack.Navigator
-      initialRouteName="Showcase"
+      initialRouteName="Vitrine"
       >
-        <Stack.Screen name="Showcase" component={Showcase} />
-        <Stack.Screen name="Food" component={Food} />
-        <Stack.Screen name="Reptiles" component={Reptile} /> 
-        <Stack.Screen name="Equipments" component={Equipments}/>
+        <Stack.Screen name="Vitrine" component={Showcase} />
+        <Stack.Screen name="Nourriture" component={Food} />
+        <Stack.Screen name="Animaux" component={Reptile} /> 
+        <Stack.Screen name="Equipements" component={Equipments}/>
       </Stack.Navigator>
     );
   }

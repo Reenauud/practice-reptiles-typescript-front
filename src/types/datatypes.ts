@@ -26,3 +26,11 @@ export type AnimalForSale = {
     quantity: number;
     price: number;
 }
+
+export type FoodForSale = {
+    id: number;
+    foodName: string;
+    foodPrice: number;
+    foodCategory: string;
+    foodPicture: string;
+}

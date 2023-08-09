@@ -7,7 +7,8 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export function Checkout () {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator
+        screenOptions={{headerShown: false}}>
           <Stack.Screen name="Panier" component={Panier} />
           <Stack.Screen name="PaymentScreen" component={PaymentScreen} /> 
         </Stack.Navigator>

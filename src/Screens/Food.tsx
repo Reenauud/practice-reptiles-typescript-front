@@ -3,10 +3,11 @@ import { View, Text, ActivityIndicator, FlatList } from "react-native";
 import { useQuery } from "@apollo/client";
 import SearchBar from "react-native-dynamic-search-bar";
 import { GET_FOOD_LIST } from "../GraphQL/Queries";
-import { IFood } from "../Interfaces/Interfaces";
+import { FoodCard } from "../Components/FoodCard";
+import { FoodForSale } from "../types/datatypes";
 
 export default function Food() {
-  const [foodList, setFoodList] = useState<IFood[]>([]);
+  const [foodList, setFoodList] = useState<FoodForSale[]>([]);
   const { loading, error } = useQuery(GET_FOOD_LIST, {
     onCompleted: (data) => {
       setFoodList([...data.getFoodList]);
@@ -15,7 +16,7 @@ export default function Food() {
   if (loading) return <ActivityIndicator />;
   if (error) return <Text>{error.message}</Text>
   return (
-    <View>
+    <View style={{flex: 1, marginVertical: 10}}>
       <Text>Choisissez la nourriture adaptée à vos reptiles préférés !</Text>
         <SearchBar
           placeholder="Que recherchez-vous ?"
@@ -27,17 +28,9 @@ export default function Food() {
           <FlatList 
           data={foodList}
           keyExtractor={(item) => item.foodName} 
-          renderItem={(foodItem: any) => {
-            console.log('item', foodItem);
-            return (
-              <View>
-                <Text>Catégorie: {foodItem.item.foodCategory}</Text>
-                <Text>Article: {foodItem.item.foodName}</Text>
-                <Text>Prix: {foodItem.item.foodPrice}</Text>
-              </View>
-            )
-          }
-        }
+          renderItem={({item}: {item: FoodForSale}) => 
+          <FoodCard 
+          food={item} />}
           />
         )}
       </View>

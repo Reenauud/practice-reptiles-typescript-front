@@ -7,7 +7,7 @@ mutation GetToken($email: String!, $password: String!) {
  }
 `;
 
-export const CreateUserMutation = gql`
+export const GET_ALL_USERS = gql`
   query GetAllUsers {
     getAllUsers {
       email
@@ -90,11 +90,20 @@ mutation ($file: UploadFileInput!) {
 }`
 
 export const CREATE_PAYMENT_SESSION = gql`
-mutation CretePaymentSession($amount: String!) {
+mutation CretePaymentSession($amount: Float!) {
     createPaymentSession(amount: $amount) {
         customer
         ephemeralKey
         paymentIntent
         publishableKey
     }
+}`;
+
+export const VERIFY_TOKEN = gql`
+mutation Mutation($token: String!) {
+  verifyToken(token: $token) {
+    id
+    email
+    role
+  }
 }`;

@@ -5,59 +5,68 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import React, { useState } from "react";
-import { GET_TOKEN } from "../GraphQL/Mutation"
+import React, { useState, useEffect } from "react";
+import { GET_TOKEN, VERIFY_TOKEN } from "../GraphQL/Mutation"
 import { useMutation } from "@apollo/client";
 import * as SecureStore from 'expo-secure-store';
 import { useDispatch, useSelector } from "react-redux";
+import { setToken } from "../app/tokenReducer";
 import { RootState } from "../app/RootReducers";
-import { setMessage } from "../app/MessageSlice";
-import { LinearGradient } from "expo-linear-gradient";
 
 export default function Connexion({ navigation }: any) {
+  const jwt = useSelector((state: RootState) => state.token.jwt);
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
   const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (jwt !== '') {
+      verify()
+    }
+  }, [jwt]);
+
+  const [verify] = useMutation(VERIFY_TOKEN, {
+    variables: {
+      token: jwt
+    },
+    onCompleted: (data) => {
+      data?.verifyToken.role === 'admin' ? setIsAdmin(true) : setIsAdmin(false);
+    }
+  })
 
   const [getConnexion, { data, loading, error }] = useMutation(GET_TOKEN, {
 
     onCompleted(data) {
       save("token", data.getToken)
-      dispatch(setMessage(data.getToken))
-      if (data.getToken) {
-        navigation.navigate('Admin')
+      dispatch(setToken(data.getToken))
+      if (jwt !== '') {
+        isAdmin ? navigation.navigate("Admin") : navigation.navigate("Accueil");
       } else {
-        alert("essaye encore")
+        alert("Adresse mail ou mot de passe incorrect.")
       }
 
     },
 
   });
 
-
   async function save(key : string, value : string) {
    await SecureStore.setItemAsync(key, value);
   }
 
   return (
-    <LinearGradient
-      colors={['#006400', '#FFFFFF',]}
+    <View
       style={styles.container}
     >
 
-      <View style={styles.connectWindow} >
-
-        <View>
-          <View style={styles.titleposition}>
-          </View>
-          <View style={styles.viewInput}>
+      <View style={styles.connectWindow}>
+        <Text style={{fontSize: 18}}>Connexion à votre compte</Text>
             <TextInput
               style={styles.input}
               placeholder="Email"
               placeholderTextColor="#9a73ef"
               autoCapitalize="none"
               onChangeText={(text) => setEmail(text)}
-
             />
             <TextInput
               style={styles.input}
@@ -67,23 +76,16 @@ export default function Connexion({ navigation }: any) {
               secureTextEntry={true}
               onChangeText={(text) => setPassword(text)}
             />
-          </View>
-          <View style={styles.txt}>
-            <Text>mot de passe oublié ? </Text>
-          </View>
-          <View style={styles.placementBtnCo}>
             <TouchableOpacity
               onPress={() => {
                 getConnexion({ variables: { email, password } })
               }}
               style={styles.BtnCo}
             >
-              <Text>Connexion</Text>
+              <Text style={{color: "white"}}>Connexion</Text>
             </TouchableOpacity>
-          </View>
-        </View>
       </View>
-    </LinearGradient>
+    </View>
 
   );
 }
@@ -97,12 +99,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   connectWindow: {
-    flex: 1,
+    flex: 0.4,
     backgroundColor: "transparent",
     zIndex: 10,
-    height: "100%",
+    height: 500,
     width: "100%",
-    justifyContent: "center",
+    justifyContent: "space-around",
     alignItems: "center"
   },
 
@@ -123,38 +125,27 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     flex: 0,
     textAlign: "center",
-    width: "100%"
+    width: 300,
   },
 
-  title: {
-    fontSize: 30,
-    color: "white",
-    marginTop: 40,
-    marginBottom: 40,
-  },
+  
   titleposition: {
     flex: 0,
     alignItems: "center",
   },
-  viewInput: {
-    marginBottom: 20,
-    width: 200
-  },
+  
   txt: {
     flex: 0,
     alignItems: "flex-end",
     marginBottom: 20,
   },
   BtnCo: {
-    backgroundColor: "darkgrey",
+    backgroundColor: "darkgreen",
     alignItems: "center",
     justifyContent: "center",
-    width: 90,
-    height: 30,
+    width: 150,
+    height: 50,
     borderRadius: 10,
   },
-  placementBtnCo: {
-    flex: 0,
-    alignItems: "center",
-  },
+  
 });

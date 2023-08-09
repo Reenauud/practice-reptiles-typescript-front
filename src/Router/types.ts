@@ -2,19 +2,20 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 export type RootStackParamList = {
     
-    Food: undefined;
-    Reptiles: undefined;
-    Equipments: undefined;
+    Nourriture: undefined;
+    Animaux: undefined;
+    Equipements: undefined;
     Admin: undefined;
     PaymentScreen: undefined;
-    Home: undefined;
-    Shop: {screen: "Showcase"};
+    Accueil: undefined;
+    Produits: {screen: "Showcase"};
     Connexion: undefined;
+    Achats: undefined;
+    Vitrine: undefined;
     Panier: undefined;
-    Showcase: undefined;
     
   };
 
-  export type EquipmentsNavigationProp = NativeStackScreenProps<RootStackParamList, "Equipments">;
-  export type HomeNavigationProp = NativeStackScreenProps<RootStackParamList, "Home">;
-  export type ShowcaseNavigationProp = NativeStackScreenProps<RootStackParamList, "Showcase">;
+  export type EquipmentsNavigationProp = NativeStackScreenProps<RootStackParamList, "Equipements">;
+  export type HomeNavigationProp = NativeStackScreenProps<RootStackParamList, "Accueil">;
+  export type ShowcaseNavigationProp = NativeStackScreenProps<RootStackParamList, "Vitrine">;

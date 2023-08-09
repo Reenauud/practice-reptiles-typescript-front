@@ -1,13 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, ScrollView, Button } from "react-native";
 import Carousel from "../Components/Carousel";
-import { LinearGradient } from "expo-linear-gradient";
 
 export default function Home({ navigation }: any) {
   
   return (
-    <LinearGradient
-      colors={['#006400', '#FFFFFF',]}
+    <View
       style={styles.background}
     >
         <View style={styles.carousel}>
@@ -46,7 +44,7 @@ export default function Home({ navigation }: any) {
             </View>
           </View>
         </ScrollView>
-    </LinearGradient>
+    </View>
 
   );
 }
@@ -93,9 +91,9 @@ const styles = StyleSheet.create({
 
   absoluteBtnContainer: {
     position: "absolute",
-    width: 200,
+    width: 100,
     bottom: 10,
-    right: 50,
+    right: 100,
   },
 
   carousel: {

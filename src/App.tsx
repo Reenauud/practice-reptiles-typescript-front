@@ -1,7 +1,7 @@
 import React from "react";
 import { AppRegistry } from "react-native";
 import client from "./client";
-import { ApolloProvider } from "@apollo/client";
+import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from "@apollo/client";
 import Router from "./Router/Router";
 import { Provider } from "react-redux";
 import { store } from './app/Store'

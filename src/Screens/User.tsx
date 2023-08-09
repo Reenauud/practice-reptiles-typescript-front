@@ -7,7 +7,8 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export function User () {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator
+        screenOptions={{headerShown: false}}>
           <Stack.Screen name="Connexion" component={Connexion} />
           <Stack.Screen name="Admin" component={Admin} /> 
         </Stack.Navigator>

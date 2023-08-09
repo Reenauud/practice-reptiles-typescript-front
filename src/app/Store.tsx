@@ -6,6 +6,7 @@ import CategorySlice from "./CategorySlice";
 import CategoryNameSlice from "./CategoryNameSlice";
 import reptileIdSlice from "./reptileIdSlice";
 import OrderReducer from "./OrderSlice";
+import tokenReducer from "./tokenReducer";
 
 export const store = configureStore({
     reducer:{
@@ -16,6 +17,7 @@ export const store = configureStore({
         categoryName: CategoryNameSlice,
         reptileId: reptileIdSlice,
         order: OrderReducer,
+        token: tokenReducer,
     }
 })
 
